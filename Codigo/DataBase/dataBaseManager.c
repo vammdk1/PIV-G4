@@ -23,9 +23,9 @@ int main(int argc, char const *argv[])
    
     insertNewWhiteCard(db, cbn, cbI);
     
-    //insertNewBlackCard(db, cnn, cnI);
+    insertNewBlackCard(db, cnn, cnI);
 
-    //insertNewPlayerData(db, pn, pI);
+    insertNewPlayerData(db, pn, pI);
 
 
     sqlite3_close(db);

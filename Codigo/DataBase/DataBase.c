@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include "DataBase.h"
 
 int createDataBase(sqlite3 *db){
@@ -58,7 +57,7 @@ int createTables(sqlite3 *db){
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
    
-    char sql[250];
+    char sql[250] = " ";
     strcat(sql, "INSERT INTO CARTAS_BLANCAS(CARDID, TEXTO) VALUES (");
     strcat(sql,ID);
     strcat(sql,", '");
@@ -69,10 +68,11 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
 
     int result = sqlite3_prepare_v2(db, sql, -1, &statement, NULL) ;
 
-
+    
     sqlite3_step(statement);
     sqlite3_finalize(statement);
   
+
     if(result != SQLITE_OK){
         printf("Error\n");
         printf("%s\n", sqlite3_errmsg(db));
@@ -87,7 +87,7 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
 
 int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
-    char sql[250];
+    char sql[250] = " "; //Si no ponemos esto se concatena con el anterior
     strcat(sql, "INSERT INTO CARTAS_NEGRAS(CARDID, TEXTO) VALUES (");
     strcat(sql,ID);
     strcat(sql,",'");
@@ -107,7 +107,7 @@ int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
 }
 int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
-    char sql[250];
+    char sql[250] = " ";
     strcat(sql, "INSERT INTO JUGADORES(PLAYERID, NOMBRE) VALUES(");
     strcat(sql,ID);
     strcat(sql,",'");

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "DataBase.h"
 
 int createDataBase(sqlite3 *db){
@@ -40,7 +41,10 @@ int createTables(sqlite3 *db){
     char sql4[] = "CREATE TABLE JUGADORES(PLAYERID INT NOT NULL, NOMBRE VARCHAR(20), PRIMARY KEY (PLAYERID));";
     int result4 = sqlite3_prepare_v2(db, sql4, -1, &statement4, 0) ;
     sqlite3_step(statement4);
+    
     sqlite3_finalize(statement4);
+    
+   
 
 /*
     sqlite3_stmt *statement5;
@@ -53,15 +57,22 @@ int createTables(sqlite3 *db){
 
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
-    char sql[] = "INSERT INTO CARTAS_BLANCAS(CARDID, TEXTO) VALUES (";
+   
+    char sql[250];
+    strcat(sql, "INSERT INTO CARTAS_BLANCAS(CARDID, TEXTO) VALUES (");
     strcat(sql,ID);
-    strcat(sql,",'");
+    strcat(sql,", '");
     strcat(sql,text);
     strcat(sql,"');");
     printf("%s\n", sql);
-    int result = sqlite3_prepare_v2(db, sql, -1, &statement, 0) ;
+  
+
+    int result = sqlite3_prepare_v2(db, sql, -1, &statement, NULL) ;
+
+
     sqlite3_step(statement);
     sqlite3_finalize(statement);
+  
     if(result != SQLITE_OK){
         printf("Error\n");
         printf("%s\n", sqlite3_errmsg(db));
@@ -69,17 +80,20 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     }
     
     return 0;
+    
 
 }
 
+
 int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
-    char sql[] = "INSERT INTO CARTAS_NEGRAS(CARDID, TEXTO) VALUES (";
+    char sql[250];
+    strcat(sql, "INSERT INTO CARTAS_NEGRAS(CARDID, TEXTO) VALUES (");
     strcat(sql,ID);
     strcat(sql,",'");
     strcat(sql,text);
     strcat(sql,"');");
-    printf("%s", sql);
+    printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);
@@ -92,13 +106,14 @@ int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
 
 }
 int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
-     sqlite3_stmt *statement;
-    char sql[] = "INSERT INTO JUGADORES(PLAYERID, NOMBRE) VALUES(";
+    sqlite3_stmt *statement;
+    char sql[250];
+    strcat(sql, "INSERT INTO JUGADORES(PLAYERID, NOMBRE) VALUES(");
     strcat(sql,ID);
     strcat(sql,",'");
     strcat(sql,text);
     strcat(sql,"');");
-    printf("%s", sql);
+    printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);

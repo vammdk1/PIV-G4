@@ -125,3 +125,33 @@ int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     return 0;
 }
 
+char* selectWhiteCard(sqlite3 *db, char* ID){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT TEXTO FROM CARTAS_BLANCAS WHERE CARDID = ");
+    strcat(sql,ID);
+    strcat(sql,";");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    char* ret;
+    strcpy(ret, text);
+   
+    return ret;
+}
+char* selectBlackCard(sqlite3 *db, char* ID);
+char* selectPlayer(sqlite3 *db, char* ID);
+
+char* getLastWhiteCardID(sqlite3 *db);
+char* getLastBlackCardID(sqlite3 *db);
+char* getLastPlayerID(sqlite3 *db);
+

@@ -10,7 +10,7 @@ int numcartas;
 }Baraja;
 
 
-void crearBaraja(*Baraja , int cuantas , Carta* cartas);
+void crearBaraja(Baraja* baraja, int cuantas , Carta* cartas);
 void imprimeBaraja(Baraja baraja);
 void liberaBaraja(Baraja* baraja);
 

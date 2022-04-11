@@ -9,7 +9,8 @@ int main(int argc, char const *argv[])
 
     //Pruebas
     sqlite3 *db;
-    sqlite3_open("../Archivos/database.db", &db);
+    char ruta[] = "../Archivos/database.db"
+    sqlite3_open(&ruta, &db);
     
    // createDataBase(db);
     //createTables(db);

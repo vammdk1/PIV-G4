@@ -3,13 +3,13 @@
 #include "carta.h"
 
 imprimirCarta(Carta c){
-    if(c.id == 1){
+    if(c.id == 0){
 
     
-    printf("Carta negra n.%i: %s \n");  }
+    printf("Carta negra n.%i: %s \n",c.id,c.texto);  }
 
     else{
-        printf("Carta blanca n.%i: %s \n");
+        printf("Carta blanca n.%i: %s \n",c.id,c.texto);
 
     }
 

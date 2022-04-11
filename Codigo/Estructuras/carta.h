@@ -3,7 +3,7 @@
 
 typedef struct{
 
-int negra; //bool
+int negra; //bool, negro = 0
 char* texto;
 int id;
 

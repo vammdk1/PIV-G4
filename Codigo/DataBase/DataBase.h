@@ -5,6 +5,7 @@
 
 int createDataBase(sqlite3 *db);
 int createTables(sqlite3 *db);
+int deleteTables(sqlite3 *db);
 
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID);
 int insertNewBlackCard(sqlite3 *db, char* text, char* ID);

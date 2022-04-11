@@ -54,6 +54,36 @@ int createTables(sqlite3 *db){
     sqlite3_finalize(statement5);
 */
 }
+int deleteTables(sqlite *db){
+ sqlite3_stmt *statement2;
+    char sql2[] = "DROP TABLE CARTAS_BLANCAS;";
+    int result2 = sqlite3_prepare_v2(db, sql2, -1, &statement2, 0) ;
+    sqlite3_step(statement2);
+    sqlite3_finalize(statement2);
+
+    sqlite3_stmt *statement3;
+    char sql3[] = "DROP TABLE CARTAS_NEGRAS;";
+    int result3 = sqlite3_prepare_v2(db, sql3, -1, &statement3, 0) ;
+    sqlite3_step(statement3);
+    sqlite3_finalize(statement3);
+
+    sqlite3_stmt *statement4;
+    char sql4[] = "DROP TABLE JUGADORES;";
+    int result4 = sqlite3_prepare_v2(db, sql4, -1, &statement4, 0) ;
+    sqlite3_step(statement4);
+    
+    sqlite3_finalize(statement4);
+    
+   
+
+/*
+    sqlite3_stmt *statement5;
+    char sql5[] = "DROP TABLE CARTAS_BLANCAS;";
+    int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
+    sqlite3_step(statement5);
+    sqlite3_finalize(statement5);
+*/
+}
 
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;

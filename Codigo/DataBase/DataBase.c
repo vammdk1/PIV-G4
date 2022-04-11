@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "DataBase.h"
 
 int createDataBase(sqlite3 *db){
@@ -135,6 +136,11 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
     sqlite3_finalize(statement);
     
     
@@ -143,15 +149,138 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
         printf("%s\n", sqlite3_errmsg(db));
         return "error";
     }
-    char* ret;
-    strcpy(ret, text);
-   
+    
+  
     return ret;
 }
-char* selectBlackCard(sqlite3 *db, char* ID);
-char* selectPlayer(sqlite3 *db, char* ID);
+char* selectBlackCard(sqlite3 *db, char* ID){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT TEXTO FROM CARTAS_NEGRAS WHERE CARDID = ");
+    strcat(sql,ID);
+    strcat(sql,";");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
+char* selectPlayer(sqlite3 *db, char* ID){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT NOMBRE FROM JUGADORES WHERE PLAYERID = ");
+    strcat(sql,ID);
+    strcat(sql,";");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
 
-char* getLastWhiteCardID(sqlite3 *db);
-char* getLastBlackCardID(sqlite3 *db);
-char* getLastPlayerID(sqlite3 *db);
+char* getLastWhiteCardID(sqlite3 *db){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_BLANCAS;");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
+char* getLastBlackCardID(sqlite3 *db){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_NEGRAS;");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
+char* getLastPlayerID(sqlite3 *db){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT MAX(PLAYERID) FROM JUGADORES;");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
 

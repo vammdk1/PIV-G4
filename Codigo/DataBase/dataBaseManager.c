@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "DataBase.h"
 
 int main(int argc, char const *argv[])
@@ -27,9 +28,26 @@ int main(int argc, char const *argv[])
 
     insertNewPlayerData(db, pn, pI);*/
 
-    printf("%s",selectWhiteCard(db, "1"));
-    
+    char* whiteCard = selectWhiteCard(db, "1");
+    printf("%s\n", whiteCard);
+    char* blacCard = selectBlackCard(db, "1");
+    printf("%s\n", blacCard);
+    char* player = selectPlayer(db,"1");
+    printf("%s\n", player);
 
+    char* wcID = getLastWhiteCardID(db);
+    printf("%s\n", wcID);
+    char* bcID = getLastBlackCardID(db);
+    printf("%s\n", bcID);
+    char* pID = getLastPlayerID(db);
+    printf("%s\n", pID);
+
+    free(whiteCard);
+    free(blacCard);
+    free(player);
+    free(wcID);
+    free(bcID);
+    free(pID);
 
     sqlite3_close(db);
     return 0;

@@ -49,7 +49,7 @@ int main(int argc, char const* argv[])
                 c.negra=1;
                 insertNewWhiteCard(db, c.texto, regresoID+1);
             }else{
-                printf("No se ha introducido ninguna opcion correcta");
+                printf("No se ha introducido ninguna opcion correcta \n");
             }
             
         }else if (op == '6' ) {

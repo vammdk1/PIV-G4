@@ -54,7 +54,7 @@ int createTables(sqlite3 *db){
     sqlite3_finalize(statement5);
 */
 }
-int deleteTables(sqlite *db){
+int deleteTables(sqlite3 *db){
  sqlite3_stmt *statement2;
     char sql2[] = "DROP TABLE CARTAS_BLANCAS;";
     int result2 = sqlite3_prepare_v2(db, sql2, -1, &statement2, 0) ;

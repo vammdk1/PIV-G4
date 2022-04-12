@@ -268,24 +268,32 @@ char* getLastBlackCardID(sqlite3 *db){
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_NEGRAS;");
     printf("%s\n", sql);
+   
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     const char* text = sqlite3_column_text(statement,0);
-    
+    printf("guardado de resultado2\n");
+    printf("%i\n",strlen(text));
        
     
     char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+         
+
     strcpy(ret, text);
+         printf("guardado de resultado3\n");
+
     sqlite3_finalize(statement);
+         printf("guardado de resultado4\n");
+
     
-    
+     
     if(result != SQLITE_OK){
         printf("Error\n");
         printf("%s\n", sqlite3_errmsg(db));
         return "error";
     }
     
-  
+ 
     return ret;
 }
 char* getLastPlayerID(sqlite3 *db){

@@ -6,6 +6,7 @@
 int main(int argc, char const* argv[])
 {
     int regresoID=0;
+    char iDaumentado;
     char frase[250];
     char str[2];
     char op;
@@ -45,8 +46,10 @@ int main(int argc, char const* argv[])
                 switch (op2){
                     case '1':
                         sscanf(getLastBlackCardID(db),"%i",&regresoID);
-                        printf("%i",regresoID);
-                        insertNewBlackCard(db, frase,(char*) regresoID+1);
+                        printf("%s",getLastBlackCardID(db));
+                        regresoID++;
+                       // sscanf(&regresoID,"%C",&iDaumentado);
+                        //insertNewBlackCard(db, frase,iDaumentado);
                         break;
                     case '2':
                         sscanf(getLastWhiteCardID(db),"%i",&regresoID);

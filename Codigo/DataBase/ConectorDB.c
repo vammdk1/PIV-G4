@@ -6,7 +6,7 @@
 int main(int argc, char const* argv[])
 {
     int regresoID=0;
-    char iDaumentado;
+    char iDaumentado[4];
     char frase[250];
     char str[2];
     char op;
@@ -43,13 +43,14 @@ int main(int argc, char const* argv[])
                 printf("1-Carta negra \n2-Carta blanca \n");
                 fgets(str, 2, stdin);
                 sscanf(str, "%s", &op2);
+                fflush(stdin);
                 switch (op2){
                     case '1':
                         sscanf(getLastBlackCardID(db),"%i",&regresoID);
-                        printf("%s",getLastBlackCardID(db));
                         regresoID++;
-                       // sscanf(&regresoID,"%C",&iDaumentado);
-                        //insertNewBlackCard(db, frase,iDaumentado);
+                        //printf("Total: %i\n",regresoID);
+                        sprintf(iDaumentado, "%c", regresoID);
+                        insertNewBlackCard(db, frase,iDaumentado);
                         break;
                     case '2':
                         sscanf(getLastWhiteCardID(db),"%i",&regresoID);

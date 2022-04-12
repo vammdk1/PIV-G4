@@ -11,7 +11,7 @@ int numcartas;
 
 
 void crearBaraja(Baraja* baraja, int cuantas , Carta* cartas);
-void imprimeBaraja(Baraja baraja);
+void imprimirBaraja(Baraja baraja);
 void liberaBaraja(Baraja* baraja);
 
 

@@ -14,7 +14,7 @@ void crearBaraja(Baraja* baraja, int cuantas , Carta* cartas){
 
 
 }
-void imprimeBaraja(Baraja baraja){
+void imprimirBaraja(Baraja baraja){
     for(int i = 0 ; i < baraja.numcartas ; i++){
         imprimirCarta(baraja.cartas[i]);
     }

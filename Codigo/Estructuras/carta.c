@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 #include "carta.h"
 
-imprimirCarta(Carta c){
+void imprimirCarta(Carta c){
     if(c.id == 0){
 
     

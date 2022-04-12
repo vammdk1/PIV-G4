@@ -9,7 +9,7 @@ int id;
 
 }Carta;
 
-imprimirCarta(Carta c);
+void imprimirCarta(Carta c);
 
 
 #endif /* CARTA_H_ */

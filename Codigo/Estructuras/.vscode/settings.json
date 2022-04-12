@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "baraja.h": "c"
+        "baraja.h": "c",
+        "stdio.h": "c",
+        "jugador.h": "c"
     }
 }

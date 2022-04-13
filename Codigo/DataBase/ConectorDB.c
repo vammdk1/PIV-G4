@@ -21,8 +21,8 @@ int main(int argc, char const* argv[])
     char* bcID;
     char* pID;
 
-    while (op != '8') { //para leer el valor sin el ampersant
-        printf("Opciones:\n1-Crear BD \n2-Borrar base de datos \n3-crear tablas  \n4-Borrar tablas \n5-Crear carta \n6-Crear usuario \n7-Consultar datos \n8-Salir\n");
+    while (op != '7') { //para leer el valor sin el ampersant
+        printf("Opciones:\n1-Crear BD \n2-crear tablas  \n3-Borrar tablas \n4-Crear carta \n5-Crear usuario \n6-Consultar datos \n7-Salir\n");
         fgets(str, 2, stdin);
         fflush(stdin);
         sscanf(str, "%s", &op); //esto se usaba para trasformar int en string 
@@ -31,17 +31,12 @@ int main(int argc, char const* argv[])
                 createDataBase(db);
                 break;
             case '2':
-                //borrarDataBase(db);//crear 
-                free(db);
-                db=NULL;
-                break;
-            case '3':
                 createTables(db);
                 break;
-            case '4':
+            case '3':
                  deleteTables(db);
                  break;
-            case '5':
+            case '4':
                
                 printf("Inserta Texto: \n");
                 fgets(frase, 250, stdin);
@@ -69,7 +64,7 @@ int main(int argc, char const* argv[])
                     }
                 break;
             
-            case '6':
+            case '5':
                
                 printf("Inserta Texto: \n");
                 fgets(frase, 250, stdin);
@@ -78,7 +73,7 @@ int main(int argc, char const* argv[])
                 sprintf(iDaumentado, "%i", regresoID);
                 insertNewPlayerData(db, frase,iDaumentado);
                 break;
-            case '7':
+            case '6':
                 
                 
                 strcpy(whiteCard, selectWhiteCard(db, "1"));

@@ -142,14 +142,17 @@ int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     strcat(sql,text);
     strcat(sql,"');");
     printf("%s\n", sql);
+    printf("prueba1");
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);
+    printf("prueba2");
     if(result != SQLITE_OK){
         printf("Error\n");
         printf("%s\n", sqlite3_errmsg(db));
         return result;
     }
+    printf("prueba3");
     return 0;
 }
 
@@ -317,7 +320,6 @@ char* getLastBlackCardID(sqlite3 *db){
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     const char* text = sqlite3_column_text(statement,0);
-    printf("guardado de resultado2\n");
     printf("%i\n",strlen(text));
        
     
@@ -325,10 +327,8 @@ char* getLastBlackCardID(sqlite3 *db){
          
 
     strcpy(ret, text);
-         printf("guardado de resultado3\n");
 
     sqlite3_finalize(statement);
-         printf("guardado de resultado4\n");
 
     
      

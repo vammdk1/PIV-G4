@@ -29,12 +29,16 @@ int main(int argc, char const *argv[])
 
     insertNewPlayerData(db, pn, pI);
 
+    insertNewGameData(db, "1", pI);
+
     char* whiteCard = selectWhiteCard(db, "1");
     printf("%s\n", whiteCard);
     char* blacCard = selectBlackCard(db, "1");
     printf("%s\n", blacCard);
     char* player = selectPlayer(db,"1");
     printf("%s\n", player);
+    char* game = selectGameWinner(db, "1");
+    printf("%s\n", game);
 
     char* wcID = getLastWhiteCardID(db);
     printf("%s\n", wcID);
@@ -42,6 +46,8 @@ int main(int argc, char const *argv[])
     printf("%s\n", bcID);
     char* pID = getLastPlayerID(db);
     printf("%s\n", pID);
+    char* gID = getLastGameID(db);
+    printf("%s\n", gID);
 
     free(whiteCard);
     free(blacCard);
@@ -49,6 +55,9 @@ int main(int argc, char const *argv[])
     free(wcID);
     free(bcID);
     free(pID);
+    free(gID);
+    free(game);
+    
 
     sqlite3_close(db);
     return 0;

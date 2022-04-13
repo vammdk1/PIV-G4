@@ -39,6 +39,7 @@ void cogerCartas(FILE* f)
     printf("\n");
 }
 
+/*
 int main(int argc, char const *argv[])
 {
     printf("cartas blancas\n");
@@ -50,4 +51,4 @@ int main(int argc, char const *argv[])
     cogerCartas(f2);
     fclose(f2);
     return 0;
-}
+}*/

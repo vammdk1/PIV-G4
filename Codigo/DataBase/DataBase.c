@@ -43,16 +43,16 @@ int createTables(sqlite3 *db){
     sqlite3_step(statement4);
     
     sqlite3_finalize(statement4);
-    
-   
 
-/*
     sqlite3_stmt *statement5;
-    char sql5[] = "CREATE TABLE CARTAS_BLANCAS(CARDID INT NOT NULL, TEXTO VARCHAR(250), PRIMARY KEY (CARDID));";
+    char sql5[] = "CREATE TABLE PARTIDAS(GAMEID INT NOT NULL, WINNER INT, PRIMARY KEY (GAMEID), FOREIGN KEY(WINNER) REFERENCES JUGADORES(PLAYERID));";
+    printf("%s\n", sql5);
     int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
-*/
+
+   
+
 }
 int deleteTables(sqlite3 *db){
  sqlite3_stmt *statement2;
@@ -74,15 +74,12 @@ int deleteTables(sqlite3 *db){
     
     sqlite3_finalize(statement4);
     
-   
-
-/*
     sqlite3_stmt *statement5;
-    char sql5[] = "DROP TABLE CARTAS_BLANCAS;";
+    char sql5[] = "DROP TABLE PARTIDAS;";
     int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
-*/
+
 }
 
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
@@ -156,6 +153,26 @@ int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     return 0;
 }
 
+int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "INSERT INTO PARTIDAS(GAMEID, WINNER) VALUES(");
+    strcat(sql,gameID);
+    strcat(sql,",");
+    strcat(sql,playerID);
+    strcat(sql,");");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    sqlite3_finalize(statement);
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return result;
+    }
+    return 0;
+}
+
 char* selectWhiteCard(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -214,6 +231,34 @@ char* selectPlayer(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
     strcat(sql, "SELECT NOMBRE FROM JUGADORES WHERE PLAYERID = ");
+    strcat(sql,ID);
+    strcat(sql,";");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}
+
+char* selectGameWinner(sqlite3 *db, char* ID){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT WINNER FROM PARTIDAS WHERE GAMEID = ");
     strcat(sql,ID);
     strcat(sql,";");
     printf("%s\n", sql);
@@ -322,3 +367,28 @@ char* getLastPlayerID(sqlite3 *db){
     return ret;
 }
 
+char* getLastGameID(sqlite3 *db){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT MAX(GAMEID) FROM PARTIDAS;");
+    printf("%s\n", sql);
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    sqlite3_step(statement);
+    const char* text = sqlite3_column_text(statement,0);
+    
+       
+    
+    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(ret, text);
+    sqlite3_finalize(statement);
+    
+    
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return "error";
+    }
+    
+  
+    return ret;
+}

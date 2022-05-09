@@ -30,12 +30,14 @@ int createTables(sqlite3 *db){
     int result2 = sqlite3_prepare_v2(db, sql2, -1, &statement2, 0) ;
     sqlite3_step(statement2);
     sqlite3_finalize(statement2);
+    insertNewWhiteCard(db, "NO SALIR", "0");
 
     sqlite3_stmt *statement3;
     char sql3[] = "CREATE TABLE CARTAS_NEGRAS(CARDID INT NOT NULL, TEXTO VARCHAR(250), PRIMARY KEY (CARDID));";
     int result3 = sqlite3_prepare_v2(db, sql3, -1, &statement3, 0) ;
     sqlite3_step(statement3);
     sqlite3_finalize(statement3);
+    insertNewBlackCard(db, "NO SALIR", "0");
 
     sqlite3_stmt *statement4;
     char sql4[] = "CREATE TABLE JUGADORES(PLAYERID INT NOT NULL, NOMBRE VARCHAR(20), PRIMARY KEY (PLAYERID));";
@@ -43,6 +45,7 @@ int createTables(sqlite3 *db){
     sqlite3_step(statement4);
     
     sqlite3_finalize(statement4);
+    insertNewPlayerData(db, "NO SALIR", "0");
 
     sqlite3_stmt *statement5;
     char sql5[] = "CREATE TABLE PARTIDAS(GAMEID INT NOT NULL, WINNER INT, PRIMARY KEY (GAMEID), FOREIGN KEY(WINNER) REFERENCES JUGADORES(PLAYERID));";
@@ -50,6 +53,7 @@ int createTables(sqlite3 *db){
     int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
+    insertNewGameData(db, "0","0");
 
    
 
@@ -183,25 +187,34 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
     strcat(sql,ID);
     strcat(sql,";");
     printf("%s\n", sql);
+    
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
+    if(result != SQLITE_OK){
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
     
        
     
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
     
     
-    if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
-    }
+     
     
   
-    return ret;
+        return ret;
+    }
+    
+    return "error";
+    
 }
 char* selectBlackCard(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
@@ -211,24 +224,31 @@ char* selectBlackCard(sqlite3 *db, char* ID){
     strcat(sql,";");
     printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
+    if(result != SQLITE_OK){
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
     
        
     
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
     
     
-    if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
-    }
+     
     
   
-    return ret;
+        return ret;
+    }
+    
+    return "error";
 }
 char* selectPlayer(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
@@ -237,25 +257,32 @@ char* selectPlayer(sqlite3 *db, char* ID){
     strcat(sql,ID);
     strcat(sql,";");
     printf("%s\n", sql);
-    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
+   int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    if(result != SQLITE_OK){
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
     
        
     
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
     
     
-    if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
-    }
+     
     
   
-    return ret;
+        return ret;
+    }
+    
+    return "error";
 }
 
 char* selectGameWinner(sqlite3 *db, char* ID){
@@ -265,25 +292,32 @@ char* selectGameWinner(sqlite3 *db, char* ID){
     strcat(sql,ID);
     strcat(sql,";");
     printf("%s\n", sql);
-    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
+   int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    if(result != SQLITE_OK){
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
     
        
     
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
     
     
-    if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
-    }
+     
     
   
-    return ret;
+        return ret;
+    }
+    
+    return "error";
 }
 
 char* getLastWhiteCardID(sqlite3 *db){
@@ -291,25 +325,30 @@ char* getLastWhiteCardID(sqlite3 *db){
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_BLANCAS;");
     printf("%s\n", sql);
+
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
-    
-       
-    
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
-    
-    
     if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
-    }
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
+
+    
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
     
   
-    return ret;
+        return ret;
+    }
+    
+    return "0";
+    
 }
 char* getLastBlackCardID(sqlite3 *db){
     sqlite3_stmt *statement;
@@ -318,28 +357,25 @@ char* getLastBlackCardID(sqlite3 *db){
     printf("%s\n", sql);
    
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
-    printf("%i\n",strlen(text));
-       
-    
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-         
-
-    strcpy(ret, text);
-
-    sqlite3_finalize(statement);
-
-    
-     
     if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
+
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
+  
+        return ret;
     }
     
- 
-    return ret;
+    return "0";
 }
 char* getLastPlayerID(sqlite3 *db){
     sqlite3_stmt *statement;
@@ -347,24 +383,25 @@ char* getLastPlayerID(sqlite3 *db){
     strcat(sql, "SELECT MAX(PLAYERID) FROM JUGADORES;");
     printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
-    
-       
-    
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
-    
-    
     if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
+
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
+
+        return ret;
     }
     
-  
-    return ret;
+    return "error";
 }
 
 char* getLastGameID(sqlite3 *db){
@@ -373,22 +410,23 @@ char* getLastGameID(sqlite3 *db){
     strcat(sql, "SELECT MAX(GAMEID) FROM PARTIDAS;");
     printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
-    sqlite3_step(statement);
-    const char* text = sqlite3_column_text(statement,0);
-    
-       
-    
-    char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
-    strcpy(ret, text);
-    sqlite3_finalize(statement);
-    
-    
     if(result != SQLITE_OK){
-        printf("Error\n");
-        printf("%s\n", sqlite3_errmsg(db));
-        return "error";
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
+
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
+
+        return ret;
     }
     
-  
-    return ret;
+    return "error";
 }

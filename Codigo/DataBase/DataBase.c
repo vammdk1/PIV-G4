@@ -12,7 +12,7 @@ int createDataBase(sqlite3 *db){
     
     char sql[] = "CREATE DATABASE dataBase;";
     int result = sqlite3_prepare_v2(db, sql, -1, &statement, 0) ;
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
     sqlite3_step(statement);
    
    sqlite3_finalize(statement);
@@ -22,6 +22,7 @@ int createDataBase(sqlite3 *db){
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
 	}
+    printf("Base de datos creada\n");
     return 0;
 }
 
@@ -52,13 +53,13 @@ int createTables(sqlite3 *db){
 
     sqlite3_stmt *statement5;
     char sql5[] = "CREATE TABLE PARTIDAS(GAMEID INT NOT NULL, WINNER INT, PRIMARY KEY (GAMEID), FOREIGN KEY(WINNER) REFERENCES JUGADORES(PLAYERID));";
-    printf("%s\n", sql5);
+    //printf("%s\n", sql5);
     int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
     insertNewGameData(db, "0","0");
 
-   
+   printf("Tablas creadas\n");
 
 }
 
@@ -89,6 +90,8 @@ int deleteTables(sqlite3 *db){
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
 
+    printf("Tablas Eliminadas\n");
+
 }
 
 //Inserta una nueva carta blanca
@@ -103,7 +106,7 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     strcat(sql,", '");
     strcat(sql,text);
     strcat(sql,"');");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
   
 
     int result = sqlite3_prepare_v2(db, sql, -1, &statement, NULL) ;
@@ -119,6 +122,7 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
         return result;
     }
     
+    printf("Carta Insertada\n");
     return 0;
     
 
@@ -135,7 +139,7 @@ int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
     strcat(sql,",'");
     strcat(sql,text);
     strcat(sql,"');");
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);
@@ -144,6 +148,8 @@ int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
         printf("%s\n", sqlite3_errmsg(db));
         return result;
     }
+
+    printf("Carta Insertada\n");
     return 0;
 
 }
@@ -158,18 +164,20 @@ int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     strcat(sql,",'");
     strcat(sql,text);
     strcat(sql,"');");
-    printf("%s\n", sql);
-    printf("prueba1");
+   // printf("%s\n", sql);
+   
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);
-    printf("prueba2");
+   
     if(result != SQLITE_OK){
         printf("Error\n");
         printf("%s\n", sqlite3_errmsg(db));
         return result;
     }
-    printf("prueba3");
+
+    printf("Jugador Insertado\n");
+    
     return 0;
 }
 
@@ -184,7 +192,7 @@ int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
     strcat(sql,",");
     strcat(sql,playerID);
     strcat(sql,");");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     sqlite3_step(statement);
     sqlite3_finalize(statement);
@@ -193,6 +201,8 @@ int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
         printf("%s\n", sqlite3_errmsg(db));
         return result;
     }
+
+    printf("Partida Insertada\n");
     return 0;
 }
 
@@ -204,7 +214,7 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
     strcat(sql, "SELECT TEXTO FROM CARTAS_BLANCAS WHERE CARDID = ");
     strcat(sql,ID);
     strcat(sql,";");
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
     
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
@@ -225,7 +235,7 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
         sqlite3_finalize(statement);
     
     
-     
+       
     
   
         return ret;
@@ -243,7 +253,7 @@ char* selectBlackCard(sqlite3 *db, char* ID){
     strcat(sql, "SELECT TEXTO FROM CARTAS_NEGRAS WHERE CARDID = ");
     strcat(sql,ID);
     strcat(sql,";");
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
          printf("Error\n");
@@ -280,7 +290,7 @@ char* selectPlayer(sqlite3 *db, char* ID){
     strcat(sql, "SELECT NOMBRE FROM JUGADORES WHERE PLAYERID = ");
     strcat(sql,ID);
     strcat(sql,";");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
          printf("Error\n");
@@ -317,7 +327,7 @@ char* selectGameWinner(sqlite3 *db, char* ID){
     strcat(sql, "SELECT WINNER FROM PARTIDAS WHERE GAMEID = ");
     strcat(sql,ID);
     strcat(sql,";");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
          printf("Error\n");
@@ -351,7 +361,7 @@ char* getLastWhiteCardID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_BLANCAS;");
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
 
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
@@ -382,7 +392,7 @@ char* getLastBlackCardID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(CARDID) FROM CARTAS_NEGRAS;");
-    printf("%s\n", sql);
+    //printf("%s\n", sql);
    
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
@@ -410,7 +420,7 @@ char* getLastPlayerID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(PLAYERID) FROM JUGADORES;");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
          printf("Error\n");
@@ -437,7 +447,7 @@ char* getLastGameID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
     strcat(sql, "SELECT MAX(GAMEID) FROM PARTIDAS;");
-    printf("%s\n", sql);
+   // printf("%s\n", sql);
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){
          printf("Error\n");

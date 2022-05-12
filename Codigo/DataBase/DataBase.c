@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include "DataBase.h"
 
+//Crea la base de datos junto al archivo.
+//*db es el puntero a la base de datos
 int createDataBase(sqlite3 *db){
 
     
@@ -23,6 +25,7 @@ int createDataBase(sqlite3 *db){
     return 0;
 }
 
+//Crea las tablas de la base de datos, incluyendo valores por defecto para evtiar errores de lectura
 int createTables(sqlite3 *db){
      //Crear las cuatro tablas
     sqlite3_stmt *statement2;
@@ -58,6 +61,8 @@ int createTables(sqlite3 *db){
    
 
 }
+
+//Elimina las tablas existentes
 int deleteTables(sqlite3 *db){
  sqlite3_stmt *statement2;
     char sql2[] = "DROP TABLE CARTAS_BLANCAS;";
@@ -86,6 +91,9 @@ int deleteTables(sqlite3 *db){
 
 }
 
+//Inserta una nueva carta blanca
+//text -> Texto a insertar en la carta
+//ID -> numero con la identificacion
 int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
    
@@ -116,7 +124,9 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID){
 
 }
 
-
+//Inserta una nueva carta negra
+//text -> Texto a insertar en la carta
+//ID -> numero con la identificacion
 int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " "; //Si no ponemos esto se concatena con el anterior
@@ -137,6 +147,9 @@ int insertNewBlackCard(sqlite3 *db, char* text, char* ID){
     return 0;
 
 }
+//Inserta un jugador a la base de datis
+//text -> Nombre dek jugador
+//ID -> numero con la identificacion
 int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -160,6 +173,9 @@ int insertNewPlayerData(sqlite3 *db, char* text, char* ID){
     return 0;
 }
 
+//Inserta una nueva partida
+//gameID -> Identificador de la partida
+//playerID -> Identificador del jugador ganador
 int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -180,6 +196,8 @@ int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
     return 0;
 }
 
+//Selecciona una carta blanca
+//ID -> Identificador de la carta
 char* selectWhiteCard(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -216,6 +234,9 @@ char* selectWhiteCard(sqlite3 *db, char* ID){
     return "error";
     
 }
+
+//Selecciona una carta negra
+//ID -> Identificador de la carta deseada
 char* selectBlackCard(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -250,6 +271,9 @@ char* selectBlackCard(sqlite3 *db, char* ID){
     
     return "error";
 }
+
+//Selecciona al jugador
+//ID -> Identificador del jugador
 char* selectPlayer(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -285,6 +309,8 @@ char* selectPlayer(sqlite3 *db, char* ID){
     return "error";
 }
 
+//Selecciona el jugador ganador de la partida
+//ID -> Identificador de la partida
 char* selectGameWinner(sqlite3 *db, char* ID){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -320,6 +346,7 @@ char* selectGameWinner(sqlite3 *db, char* ID){
     return "error";
 }
 
+//Selecciona el ultimo identificador incluido en la tabla Cartas_Blancas
 char* getLastWhiteCardID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -350,6 +377,7 @@ char* getLastWhiteCardID(sqlite3 *db){
     return "0";
     
 }
+//Selecciona el ultimo identificador incluido en la tabla Cartas_Negras
 char* getLastBlackCardID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -377,6 +405,7 @@ char* getLastBlackCardID(sqlite3 *db){
     
     return "0";
 }
+//Selecciona el ultimo identificador incluido en la tabla Jugadores
 char* getLastPlayerID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";
@@ -403,7 +432,7 @@ char* getLastPlayerID(sqlite3 *db){
     
     return "error";
 }
-
+//Selecciona el ultimo identificador incluido en la tabla Partidas
 char* getLastGameID(sqlite3 *db){
     sqlite3_stmt *statement;
     char sql[250] = " ";

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//Lee un texto dado, creando una carta por linea
+// f es el archivo a leer
 void cogerCartas(FILE* f)
 {
     int id = 1;

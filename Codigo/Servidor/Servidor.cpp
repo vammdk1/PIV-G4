@@ -1,17 +1,44 @@
 extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
-
+	#include "../DataBase/DataBase.h" //link la shell.c
     
 }
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cstring>
+
+using namespace std;
 
 // IMPORTANT: Winsock Library ("ws2_32") should be linked
 
-#define SERVER_IP "127.0.0.1" //Hacerle un JSON para la config
-#define SERVER_PORT 6000
 
 int main(int argc, char *argv[]) {
 
+	char* SERVER_IP;
+    int SERVER_PORT = 6000;
+    std::ifstream myfile;
+    myfile.open("../../Archivos/.config");
+    
+    int lineNumber = 0;
+    for( std::string line; getline( myfile, line ); )
+    {
+        if(lineNumber == 0){
+           SERVER_IP = new char[strlen(line.c_str())+1];
+           strcpy(SERVER_IP, line.c_str());
+        } else {
+            stringstream ss;
+            ss << line;
+            ss >> SERVER_PORT;
+        }
+		lineNumber++;
+        
+    }
+    myfile.close();
+	cout << SERVER_IP << endl;
+	cout << SERVER_PORT << endl;
+    
 	WSADATA wsaData;
 	SOCKET conn_socket;
 	SOCKET comm_socket;
@@ -75,6 +102,9 @@ int main(int argc, char *argv[]) {
 
 	// Closing the listening sockets (is not going to be used anymore)
 	closesocket(conn_socket);
+	
+	//gameLogic;
+	bool gameFinished = false;
 
 	//SEND and RECEIVE data
 	printf("Waiting for incoming messages from client... \n");
@@ -93,7 +123,7 @@ int main(int argc, char *argv[]) {
 			if (strcmp(recvBuff, "Bye") == 0)
 				break;
 		}
-	} while (1);
+	} while (!gameFinished);
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);

@@ -13,6 +13,7 @@ int numcartas;
 void crearBaraja(Baraja* baraja, int cuantas , Carta* cartas);
 void imprimirBaraja(Baraja baraja);
 void liberaBaraja(Baraja* baraja);
-
+Carta seleccionarCarta(Baraja* baraja, unsigned int pos);
+void cambiarCarta(Baraja* baraja, unsigned int pos, Carta* nuevaCarta)
 
 #endif /* BARAJA_H_ */

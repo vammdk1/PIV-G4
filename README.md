@@ -8,3 +8,8 @@ Como usar la base de datos:
 
 Crear tablas o insertar datos no requiere nada especial.
 Para recibir los datos de las consultas, hace falta guardar el dato en un char* y hacer un free al final, ya que se utiliza un malloc
+
+Compilar los .c en .o
+g++ -c cosos.c -o cosos.o
+
+Con todos los .o --> g++ -o coso.exe todos.o

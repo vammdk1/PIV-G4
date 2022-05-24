@@ -29,10 +29,11 @@ int main(int argc, char *argv[]) {
             ss >> SERVER_PORT;
         }
         lineNumber++;
-        cout << line << endl;
+       
     }
     myfile.close();
-    
+    cout << SERVER_IP << endl;
+	cout << SERVER_PORT << endl;
 
 	WSADATA wsaData;
 	SOCKET s;

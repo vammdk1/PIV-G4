@@ -29,3 +29,13 @@ void liberaBaraja(Baraja* baraja){
     free(baraja->cartas);
     free(baraja);
 }
+
+Carta seleccionarCarta(Baraja* baraja, unsigned int pos){
+    return cartas[pos % numcartas];
+}
+
+void cambiarCarta(Baraja* baraja, unsigned int pos, Carta* nuevaCarta){
+    free(baraja->cartas[pos]);
+    baraja->cartas[pos] = (Carta*) malloc(sizeof(Carta));
+    *(baraja->cartas[pos]) = &nuevaCarta;
+}

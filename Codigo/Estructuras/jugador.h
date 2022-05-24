@@ -1,22 +1,31 @@
 #ifndef JUGADOR_H_
 #define JUGADOR_H_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdio.h>
-#include "carta.h"
-#include "baraja.h"
-#include "jugador.h"
-
-typedef struct{
-
-int numero;
-char* nombre;
-Baraja cartasnegras;
-
-}Jugador;
-
-void crearJugador(Jugador* jug , int numero, char* nombre , Baraja baraja);
+extern 'C'{
+    #include "baraja.h"
+    #include "carta.h"
+    #include <string.h>
+}
 
 
-#endif /* JUGADOR_H_ */
+class Jugador{
+    private:
+        Baraja baraja;
+        char* nombre;
+        int puntos;
+        bool rey;
+    public:
+        Jugador(Carta* cartas, char* nombre)
+        ~Jugador();
+
+        bool esRey();
+        void cambiarRey();
+        int getPuntos();
+        void sumarPuntos(int puntos);
+        Carta seleccionarCarta(unsigned int pos);
+        void cambiarCarta(Carta* nuevaCarta, int pos);
+
+}
+
+
+#endif 

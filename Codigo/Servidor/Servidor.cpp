@@ -2,12 +2,14 @@ extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
 	#include "../DataBase/DataBase.h" //link la shell.c
+	//#include "../Estructuras/jugador.h"
     
 }
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -45,7 +47,7 @@ int main(int argc, char *argv[]) {
 	struct sockaddr_in server;
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
-	int Njugadores,Nrondas;
+	
 
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -107,26 +109,32 @@ int main(int argc, char *argv[]) {
 	//gameLogic;
 	bool gameFinished = false;
 	char str[50];
+	int Njugadores,Nrondas;
+	
 	//SEND and RECEIVE data	//Inicio del juego
 	printf("Inicio\n");
-	do {
+	int i =1;
+	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//1b
+	printf("paso %i \n",i);
+	i++;
+	sscanf(recvBuff, "%i",&Njugadores );
+	printf("NJugadores : %i \n", Njugadores);
+	
+	int x =0;
+	char listaJ[Njugadores]={"\0"};//al no usar jugador agarra mal el tamaño,
+	// esta usando el tamaño de un caracter
+	while (x<Njugadores)
+	{
+		send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
 		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		if (bytes > 0) {
-			printf("Receiving message... \n");
-			printf("Data received: %s \n", recvBuff);
-
-			printf("Sending reply... \n");
-			//strcpy(sendBuff, "ACK -> ");
-			//strcat(sendBuff, recvBuff);
-			fgets(str, 50, stdin);
-			fflush(stdin);
-			send(comm_socket, str, sizeof(sendBuff), 0);
-			printf("Data sent: %s \n", sendBuff);
-
-			if (strcmp(recvBuff, "Bye") == 0)
-				break;
+			printf("Nombre %s, pos: %i\n", recvBuff,x);
+			strcpy(&listaJ[x], recvBuff);
+			//send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
+			x++;
 		}
-	} while (!gameFinished);
+	}
+	printf(&listaJ[0]);
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);

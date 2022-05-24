@@ -9,6 +9,23 @@ extern "C"{
 #include <cstring>
 
 using namespace std;
+void cabecera(){
+	printf("+------------------------------------+\n|+----------------------------------+|\n");
+	printf("||                                  ||\n");
+	printf("||     CMD CONTRA LA HUMANIDAD      ||\n");
+	printf("||                                  ||\n");
+	printf("++----------------------------------++\n++----------------------------------++\n");
+}
+void LineaJugador(char nombres[], int longitud){
+	for(int i=0;i<longitud;i++){
+		printf("\n|| %c |          |          ||",nombres[i]);
+	}
+	
+	}
+
+void LineaConsola(){
+	printf("++-----------+----------+-----------++\n|| Jugadores | Puntos   |   Rey     ||\n--------------------------------------");
+}
 
 int main(int argc, char *argv[]) {
 
@@ -40,13 +57,13 @@ int main(int argc, char *argv[]) {
 	char sendBuff[512], recvBuff[512];
 	char str[50];
 
-	printf("\nInitialising Winsock...\n");
+	//printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
 		printf("Failed. Error Code : %d", WSAGetLastError());
 		return -1;
 	}
 
-	printf("Initialised.\n");
+	//printf("Initialised.\n");
 
 	//SOCKET creation
 	if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
@@ -55,7 +72,7 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
-	printf("Socket created.\n");
+	//printf("Socket created.\n");
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -69,49 +86,44 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
-	printf("Connection stablished with: %s (%d)\n", inet_ntoa(server.sin_addr),
-			ntohs(server.sin_port));
+	//printf("Connection stablished with: %s (%d)\n", inet_ntoa(server.sin_addr),
+	//		ntohs(server.sin_port));
 
-	// SEND and RECEIVE data
+	//Fase 1
+	cabecera();
+	printf("Introduce el numero de jugadores: ");
+	fgets(str, 2, stdin);
+	fflush(stdin);
+	strcpy(sendBuff, str);
+	send(s, sendBuff, sizeof(sendBuff), 0); //1a
+
+	int NJ ;
+	sscanf(str, "%i",&NJ);
+	//Fase 2 
 	int i =0;
-	while (i<=10)
+	char listaJ[NJ]={"\0"};
+	while (i<NJ)
 	{
-		printf("Writing message ... \n");
+		//printf("Receiving message 2... \n");
+		recv(s, recvBuff, sizeof(recvBuff), 0);
+		printf("Data received: %s ", recvBuff);
+		printf("%i \n",i+1);
 		fgets(str, 50, stdin);
 		fflush(stdin);
-		printf("Sending message ... \n");
 		strcpy(sendBuff, str);
+		strcpy(&listaJ[i], str);
 		send(s, sendBuff, sizeof(sendBuff), 0);
-		/**printf("Sending message 1... \n");
-		strcpy(sendBuff, "Hello, server.");
-		send(s, sendBuff, sizeof(sendBuff), 0);**/
-		
-		printf("Receiving message 2... \n");
-		recv(s, recvBuff, sizeof(recvBuff), 0);
-		printf("Data received: %s \n", recvBuff);
-		
 		i++;
-		printf("Mensajes Restantes %i \n",10%i);
 	}
+
+	cabecera();
+	LineaConsola();
+	LineaJugador(listaJ, NJ);
 	
-	/**
-+------------------------------------+
-|+----------------------------------+|
-||                                  ||
-||         Nombre del juego         ||
-||                                  ||
-++----------------------------------++
-|                                    |
-++-----------+----------+-----------++
-||           | Puntos   |   Rey     ||
-|| Jugador 1 |          |           ||
-||           |          |           ||
-|| Jugador 2 |          |           ||
-||           |          |           ||
-|| Jugador 3 |          |           ||
-||           |          |           ||
-|+-----------+----------+-----------+|
-+------------------------------------+**/
+
+
+
+
 
 	// CLOSING the socket and cleaning Winsock...
 	closesocket(s);

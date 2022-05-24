@@ -3,7 +3,7 @@
 Jugador::Jugador(Carta* cartas, char* nombre){
 
     crearBaraja(baraja, 7, cartas);
-    this->nombre = new char[20];
+    this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
     puntos = 0;
 

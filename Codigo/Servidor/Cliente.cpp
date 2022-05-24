@@ -29,16 +29,16 @@ int main(int argc, char *argv[]) {
             ss >> SERVER_PORT;
         }
         lineNumber++;
-       
+        //out << line << endl;
     }
     myfile.close();
-    cout << SERVER_IP << endl;
-	cout << SERVER_PORT << endl;
+    
 
 	WSADATA wsaData;
 	SOCKET s;
 	struct sockaddr_in server;
 	char sendBuff[512], recvBuff[512];
+	char str[50];
 
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -73,27 +73,45 @@ int main(int argc, char *argv[]) {
 			ntohs(server.sin_port));
 
 	// SEND and RECEIVE data
-	printf("Sending message 1... \n");
-	strcpy(sendBuff, "Hello, server.");
-	send(s, sendBuff, sizeof(sendBuff), 0);
-
-	printf("Receiving message 1... \n");
-	recv(s, recvBuff, sizeof(recvBuff), 0);
-	printf("Data received: %s \n", recvBuff);
-
-	printf("Sending message 2... \n");
-	strcpy(sendBuff, "Hello again.");
-	send(s, sendBuff, sizeof(sendBuff), 0);
-	printf("Data sent: %s \n", sendBuff);
-
-	printf("Receiving message 2... \n");
-	recv(s, recvBuff, sizeof(recvBuff), 0);
-	printf("Data received: %s \n", recvBuff);
-
-	printf("Sending last message... \n");
-	strcpy(sendBuff, "Bye");
-	send(s, sendBuff, sizeof(sendBuff), 0);
-	printf("Data sent: %s \n", sendBuff);
+	int i =0;
+	while (i<=10)
+	{
+		printf("Writing message ... \n");
+		fgets(str, 50, stdin);
+		fflush(stdin);
+		printf("Sending message ... \n");
+		strcpy(sendBuff, str);
+		send(s, sendBuff, sizeof(sendBuff), 0);
+		/**printf("Sending message 1... \n");
+		strcpy(sendBuff, "Hello, server.");
+		send(s, sendBuff, sizeof(sendBuff), 0);**/
+		
+		printf("Receiving message 2... \n");
+		recv(s, recvBuff, sizeof(recvBuff), 0);
+		printf("Data received: %s \n", recvBuff);
+		
+		i++;
+		printf("Mensajes Restantes %i \n",10%i);
+	}
+	
+	/**
++------------------------------------+
+|+----------------------------------+|
+||                                  ||
+||         Nombre del juego         ||
+||                                  ||
+++----------------------------------++
+|                                    |
+++-----------+----------+-----------++
+||           | Puntos   |   Rey     ||
+|| Jugador 1 |          |           ||
+||           |          |           ||
+|| Jugador 2 |          |           ||
+||           |          |           ||
+|| Jugador 3 |          |           ||
+||           |          |           ||
+|+-----------+----------+-----------+|
++------------------------------------+**/
 
 	// CLOSING the socket and cleaning Winsock...
 	closesocket(s);

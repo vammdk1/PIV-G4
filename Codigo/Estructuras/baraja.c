@@ -10,18 +10,11 @@ void crearBaraja(Baraja* baraja, int cuantas , Carta* cartas){
     for(int i = 0; i<cuantas ; i++){
         baraja->cartas[i] = cartas[i];
     }
-
-
-
 }
 void imprimirBaraja(Baraja baraja){
     for(int i = 0 ; i < baraja.numcartas ; i++){
         imprimirCarta(baraja.cartas[i]);
     }
-
-
-
-
 }
 
 void liberaBaraja(Baraja* baraja){
@@ -31,11 +24,12 @@ void liberaBaraja(Baraja* baraja){
 }
 
 Carta seleccionarCarta(Baraja* baraja, unsigned int pos){
-    return cartas[pos % numcartas];
+    return baraja->cartas[pos % baraja->numcartas];
 }
 
+/**
 void cambiarCarta(Baraja* baraja, unsigned int pos, Carta* nuevaCarta){
     free(baraja->cartas[pos]);
     baraja->cartas[pos] = (Carta*) malloc(sizeof(Carta));
     *(baraja->cartas[pos]) = &nuevaCarta;
-}
+}**/

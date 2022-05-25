@@ -2,10 +2,13 @@
 
 Jugador::Jugador(Carta* cartas, char* nombre){
 
-    crearBaraja(baraja, 7, cartas);
+    crearBaraja(baraja* p, 7, cartas[0]);
     this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
     puntos = 0;
+
+}
+Jugador::Jugador(){
 
 }
 
@@ -25,6 +28,9 @@ void Jugador::cambiarRey(){
 
 int Jugador::getPuntos(){
     return puntos;
+}
+char* Jugador::getNombre(){
+    return nombre;
 }
 
 void Jugador::sumarPuntos(int puntos){

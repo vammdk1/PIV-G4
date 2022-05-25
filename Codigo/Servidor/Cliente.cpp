@@ -2,6 +2,8 @@
 extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
+	#include "../Estructuras/jugador.h"
+	#include "../Estructuras/carta.h"
 }
 #include <iostream>
 #include <fstream>

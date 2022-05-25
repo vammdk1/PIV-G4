@@ -2,7 +2,8 @@ extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
 	#include "../DataBase/DataBase.h" //link la shell.c
-	//#include "../Estructuras/jugador.h"
+	#include "../Estructuras/jugador.h"
+	#include "../Estructuras/carta.h"
     
 }
 #include <iostream>
@@ -121,7 +122,7 @@ int main(int argc, char *argv[]) {
 	printf("NJugadores : %i \n", Njugadores);
 	
 	int x =0;
-	char listaJ[Njugadores]={"\0"};//al no usar jugador agarra mal el tamaño,
+	Jugador listaJ[Njugadores];//al no usar jugador agarra mal el tamaño,
 	// esta usando el tamaño de un caracter
 	while (x<Njugadores)
 	{
@@ -129,12 +130,13 @@ int main(int argc, char *argv[]) {
 		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		if (bytes > 0) {
 			printf("Nombre %s, pos: %i\n", recvBuff,x);
-			strcpy(&listaJ[x], recvBuff);
+
+			listaJ[x] = Jugador(NULL,recvBuff);
 			//send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
 			x++;
 		}
 	}
-	printf(&listaJ[0]);
+	printf(listaJ[0].getNombre());
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);

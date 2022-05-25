@@ -14,4 +14,4 @@ g++ -c cosos.c -o cosos.o
 
 Con todos los .o --> g++ -o coso.exe todos.o
 
-Para insertar nuevas cartas de forma masiva, primero vacia los txt y luego ejecuta leeTexto.c
+Para insertar nuevas cartas de forma masiva, primero vacia los txt y luego ejecuta leeTexto.exe

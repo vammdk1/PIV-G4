@@ -15,3 +15,6 @@ g++ -c cosos.c -o cosos.o
 Con todos los .o --> g++ -o coso.exe todos.o
 
 Para insertar nuevas cartas de forma masiva, primero vacia los txt y luego ejecuta leeTexto.exe
+
+Compilar el servidor:
+g++ Servidor.cpp ../Estructuras/jugador.cpp ../Estructuras/carta.o -o Servidor.exe -l ws2_32

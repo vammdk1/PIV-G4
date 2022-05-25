@@ -3,7 +3,7 @@ extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
 	#include "../Estructuras/jugador.h"
-	#include "../Estructuras/carta.h"
+	//#include "../Estructuras/carta.h"
 }
 #include <iostream>
 #include <fstream>
@@ -18,9 +18,9 @@ void cabecera(){
 	printf("||                                  ||\n");
 	printf("++----------------------------------++\n++----------------------------------++\n");
 }
-void LineaJugador(char nombres[], int longitud){
+void LineaJugador(Jugador nombres[], int longitud){
 	for(int i=0;i<longitud;i++){
-		printf("\n|| %c |          |          ||",nombres[i]);
+		printf("\n|| %s |          |          ||",nombres[i].getNombre());
 	}
 	
 	}
@@ -103,17 +103,17 @@ int main(int argc, char *argv[]) {
 	sscanf(str, "%i",&NJ);
 	//Fase 2 
 	int i =0;
-	char listaJ[NJ]={"\0"};
+	Jugador listaJ[NJ]={};
 	while (i<NJ)
 	{
 		//printf("Receiving message 2... \n");
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 		printf("Data received: %s ", recvBuff);
 		printf("%i \n",i+1);
-		fgets(str, 50, stdin);
+		fgets(str, 10, stdin);
 		fflush(stdin);
 		strcpy(sendBuff, str);
-		strcpy(&listaJ[i], str);
+		(listaJ[i]) = *(new Jugador(str));
 		send(s, sendBuff, sizeof(sendBuff), 0);
 		i++;
 	}

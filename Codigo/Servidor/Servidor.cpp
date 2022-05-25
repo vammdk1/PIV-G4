@@ -2,7 +2,6 @@ extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
 	#include "../DataBase/DataBase.h" //link la shell.c
-	#include "../Estructuras/jugador.h"
 	#include "../Estructuras/carta.h"
     
 }
@@ -11,8 +10,10 @@ extern "C"{
 #include <sstream>
 #include <cstring>
 #include <stdlib.h>
+#include "../Estructuras/jugador.h"
 
 using namespace std;
+
 
 // IMPORTANT: Winsock Library ("ws2_32") should be linked
 
@@ -121,17 +122,20 @@ int main(int argc, char *argv[]) {
 	sscanf(recvBuff, "%i",&Njugadores );
 	printf("NJugadores : %i \n", Njugadores);
 	
-	int x =0;
+	int x = 0;
+	
 	Jugador listaJ[Njugadores];//al no usar jugador agarra mal el tamaño,
 	// esta usando el tamaño de un caracter
+	
 	while (x<Njugadores)
 	{
+		
 		send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
 		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		if (bytes > 0) {
 			printf("Nombre %s, pos: %i\n", recvBuff,x);
 
-			listaJ[x] = Jugador(NULL,recvBuff);
+			listaJ[x] = *(new Jugador(recvBuff));
 			//send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
 			x++;
 		}

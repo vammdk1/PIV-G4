@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	//printf("Connection stablished with: %s (%d)\n", inet_ntoa(server.sin_addr),
-	//		ntohs(server.sin_port));
+	//ntohs(server.sin_port));
 
 	//Fase 1
 	cabecera();
@@ -121,8 +121,54 @@ int main(int argc, char *argv[]) {
 	cabecera();
 	LineaConsola();
 	LineaJugador(listaJ, NJ);
-	
 
+	//Fase 3
+	int TurnosRonda=0;
+	while (true){
+		while (TurnosRonda<NJ-1)
+		{
+			//recibir carta negra , equivalente en la linea 166 de serviddor
+			recv(s, recvBuff, sizeof(recvBuff), 0);
+			printf("Data received: %s \n", recvBuff);
+			//responder receipción de la carta negra
+			send(s, "Carta negra recibida", sizeof(sendBuff), 0);
+			//recibir Nombre del jugador x
+			recv(s, recvBuff, sizeof(recvBuff), 0);
+			printf("Turno de: %s \n", recvBuff);
+			//responder receipción de nombre
+			for (int i = 0; i < 7; i++)
+			{
+				//recibir carta blanca
+				recv(s, recvBuff, sizeof(recvBuff), 0);
+				printf("%i -%s ", recvBuff);
+				//enviar respuesta
+				if(i=6){
+					send(s,"carta7", sizeof(sendBuff), 0);
+				}
+				send(s, "Carta negra recibida", sizeof(sendBuff), 0);
+			}
+			//recibir pregunta ronda
+			recv(s, recvBuff, sizeof(recvBuff), 0);
+			printf(recvBuff);
+			//responder el numero de la carta que será la respuesta
+			fgets(str, 2, stdin);
+			fflush(stdin);
+			send(s, str, sizeof(sendBuff), 0);
+			//cambio de jugador, el rey siempre es el ultimo y se hace afuera del bucle
+		}
+
+		//recibir la carta negra de la ronda para el rey
+		recv(s, recvBuff, sizeof(recvBuff), 0);
+		printf("Data received: %s \n", recvBuff);
+		//responder receipción de la carta negra
+		send(s, "Carta negra recibida", sizeof(sendBuff), 0);
+		for (int i = 0; i < NJ; i++) //equivalente en linea 195 servidor
+		{
+			//recibir las respuestas de los otros jugadores
+		}
+		
+
+	}
 
 
 

@@ -4,6 +4,17 @@
 Jugador::Jugador(char* nombre){
 
     this->arrayCartas = new Carta[7];
+     char* temp = new char[20];
+    strcpy(temp, "Texto de ejemplo");
+    for(int i = 0; i < 7; i++){
+        arrayCartas[i].negra = 0;
+        
+        setTexto(&(arrayCartas[i]), temp);
+        
+        arrayCartas[i].id = 0;
+        
+    }
+    delete[] temp;
     this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
     puntos = 0;
@@ -13,6 +24,18 @@ Jugador::Jugador(char* nombre){
 Jugador::Jugador(){
     
     this->arrayCartas = new Carta[7];
+    
+    char* temp = new char[20];
+    strcpy(temp, "Texto de ejemplo");
+    for(int i = 0; i < 7; i++){
+        arrayCartas[i].negra = 0;
+        
+        setTexto(&(arrayCartas[i]), temp);
+       
+        arrayCartas[i].id = 0;
+        
+    }
+    delete[] temp;
     
     this->nombre = new char[7];
     strcpy(this->nombre, "NoName");
@@ -25,6 +48,16 @@ Jugador::Jugador(){
 
 Jugador::Jugador(const Jugador& jugador){
     this->nombre = new char[strlen(jugador.nombre)+1];
+   
+    for(int i = 0; i < 7; i++){
+        arrayCartas[i].negra = 0;
+        
+        setTexto(&(arrayCartas[i]), jugador.arrayCartas[i].texto);
+       
+        arrayCartas[i].id = 0;
+        
+    }
+    
     strcpy(this->nombre, jugador.nombre);
     this->puntos = jugador.puntos;
     bool rey = false;
@@ -37,6 +70,9 @@ Jugador::Jugador(const Jugador& jugador){
 
 Jugador::~Jugador(){
     delete[] nombre;
+    for(int i = 0; i < 7;i++){
+       freeTexto(&arrayCartas[i]);
+    }
     delete[] arrayCartas;
     
 }
@@ -70,5 +106,7 @@ Carta Jugador::seleccionarCarta(unsigned int pos){
 
 void Jugador::cambiarCarta(Carta* nuevaCarta, int pos){
     arrayCartas[pos].id = nuevaCarta->id;
-    strcpy(arrayCartas[pos].texto, nuevaCarta->texto);
+    arrayCartas[pos].negra = nuevaCarta->negra;
+    freeTexto(&(this->arrayCartas[pos]));
+    setTexto(&(arrayCartas[pos]), nuevaCarta->texto);
 }

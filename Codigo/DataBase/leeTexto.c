@@ -8,7 +8,8 @@ void cogerCartas(FILE* f, int tipoCarta)
 {
     sqlite3* db;
     sqlite3_open("../Archivos/database.db", &db);
-    int id = 1;
+    int id = 0;
+    //Coger el ultimo id, y luego operar con el
     char* frase = NULL;
     size_t len = 0;
     char** cartas;

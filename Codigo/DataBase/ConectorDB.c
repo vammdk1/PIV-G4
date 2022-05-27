@@ -9,6 +9,11 @@ int main(int argc, char const* argv[])
     char iDaumentado[4];
     char frase[250];
     char str[2];
+    int lastIDwhite = 0;
+    int lastIDBlac = 0;
+    int lastIDplayer = 0;
+    int lastIDgame = 0;
+    char readID[4];
     char op;
     char op2;
     sqlite3* db;
@@ -17,12 +22,13 @@ int main(int argc, char const* argv[])
     char* whiteCard;
     char* blacCard;
     char* player ;
+    char* game;
     char* wcID ;
     char* bcID;
     char* pID;
 
     while (op != '7') { //para leer el valor sin el ampersant
-        printf("Opciones:\n1-Crear BD \n2-crear tablas  \n3-Borrar tablas \n4-Crear carta \n5-Crear usuario \n6-Consultar datos \n7-Salir\n");
+        printf("Opciones:\n1-Crear BD \n2-Crear tablas  \n3-Borrar tablas \n4-Crear carta \n5-Crear usuario \n6-Consultar datos \n7-Salir\n");
         fgets(str, 2, stdin);
         fflush(stdin);
         sscanf(str, "%s", &op); //esto se usaba para trasformar int en string 
@@ -75,7 +81,64 @@ int main(int argc, char const* argv[])
                 break;
             case '6':
                 
+                sscanf(getLastWhiteCardID(db),"%i",&lastIDwhite);
                 
+                //printf("%i",&LastID);
+                for (int i = 1; i <= lastIDwhite; i++)
+                {
+                    
+                    strcpy(readID, "");
+                    printf("%s\n", readID);
+                    sprintf(readID, "%i", i);
+                    printf("%s\n", readID);
+                    //sscanf(i,"%s",&Cid);
+                    whiteCard = selectWhiteCard(db, readID);
+                    //strcpy(whiteCard, temp);
+                    printf("Carta Blanca: %s\n", whiteCard);
+                }
+
+                sscanf(getLastBlackCardID(db), "%i", &lastIDBlac);
+                for (int i = 1; i <= lastIDBlac; i++)
+                {
+                    
+                    strcpy(readID, "");
+                    printf("%s\n", readID);
+                    sprintf(readID, "%i", i);
+                    printf("%s\n", readID);
+                    //sscanf(i,"%s",&Cid);
+                    blacCard = selectBlackCard(db, readID);
+                    //strcpy(whiteCard, temp);
+                    printf("Carta Negra: %s\n", blacCard);
+                }
+                sscanf(getLastPlayerID(db), "%i", &lastIDgame);
+                for (int i = 1; i <= lastIDgame; i++)
+                {
+                    
+                    strcpy(readID, "");
+                    printf("%s\n", readID);
+                    sprintf(readID, "%i", i);
+                    printf("%s\n", readID);
+                    //sscanf(i,"%s",&Cid);
+                    player = selectPlayer(db, readID);
+                    //strcpy(whiteCard, temp);
+                    printf("Jugador: %s\n", player);
+                }
+                sscanf(getLastGameID(db), "%i", &lastIDgame);
+                
+                for (int i = 1; i <= lastIDgame; i++)
+                {
+                    
+                    strcpy(readID, "");
+                    printf("%s\n", readID);
+                    sprintf(readID, "%i", i);
+                    printf("%s\n", readID);
+                    //sscanf(i,"%s",&Cid);
+                    game = selectGameWinner(db, readID);
+                    //strcpy(whiteCard, temp);
+                    player = selectPlayer(db, game);
+                    printf("Ganador: %s\n", player);
+                }
+                /*
                 strcpy(whiteCard, selectWhiteCard(db, "1"));
                 printf("Carta Blanca: %s\n", whiteCard);
                 blacCard = selectBlackCard(db, "1");
@@ -88,6 +151,7 @@ int main(int argc, char const* argv[])
                 printf("%s\n", bcID);
                 pID = getLastPlayerID(db);
                 printf("%s\n", pID);
+                */
                 break;
                 
         }

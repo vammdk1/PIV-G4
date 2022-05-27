@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdio.h>
+
 #include "carta.h"
 
 void imprimirCarta(Carta c){
@@ -13,4 +13,14 @@ void imprimirCarta(Carta c){
 
     }
 
+}
+
+void setTexto(Carta* c, char* text){
+    c->texto = (char*) malloc(sizeof(char)*strlen(text)+1);
+    strcpy(c->texto, text);
+    
+}
+
+void freeTexto(Carta* c){
+    free(c->texto);
 }

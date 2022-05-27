@@ -20,13 +20,13 @@ void cabecera(){
 }
 void LineaJugador(Jugador nombres[], int longitud){
 	for(int i=0;i<longitud;i++){
-		printf("\n|| %s |          |          ||",nombres[i].getNombre());
+		printf("|| %s |          |          ||\n",nombres[i].getNombre());
 	}
 	
 	}
 
 void LineaConsola(){
-	printf("++-----------+----------+-----------++\n|| Jugadores | Puntos   |   Rey     ||\n--------------------------------------");
+	printf("++-----------+----------+-----------++\n|| Jugadores | Puntos   |   Rey     ||\n--------------------------------------\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 	{
 		//printf("Receiving message 2... \n");
 		recv(s, recvBuff, sizeof(recvBuff), 0);
-		printf("Data received: %s ", recvBuff);
+		printf(" %s ", recvBuff);
 		printf("%i \n",i+1);
 		fgets(str, 10, stdin);
 		fflush(stdin);
@@ -123,38 +123,50 @@ int main(int argc, char *argv[]) {
 	LineaJugador(listaJ, NJ);
 
 	//Fase 3
-	int TurnosRonda=0;
-	while (true){
-		while (TurnosRonda<NJ-1)
-		{
-			//recibir carta negra , equivalente en la linea 166 de serviddor
+	bool FinJuego=false;
+	int TurnoRey=0;
+
+	while (!FinJuego)
+	{
+		listaJ[TurnoRey].getNombre();	
+		printf("Ronda %i \n",TurnoRey+1);
+		//recibir carta negra , equivalente en la linea 161 de serviddor
 			recv(s, recvBuff, sizeof(recvBuff), 0);
 			printf("Data received: %s \n", recvBuff);
 			//responder receipción de la carta negra
 			send(s, "Carta negra recibida", sizeof(sendBuff), 0);
-			//recibir Nombre del jugador x
-			recv(s, recvBuff, sizeof(recvBuff), 0);
-			printf("Turno de: %s \n", recvBuff);
-			//responder receipción de nombre
-			for (int i = 0; i < 7; i++)
-			{
-				//recibir carta blanca
+		for (int x = 0; x < NJ; x++)
+		{
+			if(listaJ[i].getPuntos()==NJ){
+				FinJuego = true;
+				break;
+			//enviar fin del juego
+			}else if(x==TurnoRey){
+				printf("este es el jugador rey, pasar al siguiente\n");
+			}else{
+				//recibir Nombre del jugador x
 				recv(s, recvBuff, sizeof(recvBuff), 0);
-				printf("%i -%s ", recvBuff);
-				//enviar respuesta
-				if(i=6){
-					send(s,"carta7", sizeof(sendBuff), 0);
+				printf("Turno de: %s \n", recvBuff);
+				//responder receipción de nombre
+				send(s, recvBuff, sizeof(sendBuff), 0);
+				for (int i = 0; i < 7; i++)
+				{
+					//recibir carta blanca
+					recv(s, recvBuff, sizeof(recvBuff), 0);
+					printf("%s \n", recvBuff);
+					//enviar confirmacion de carta
+					send(s, "Carta blanca ", sizeof(sendBuff), 0);
+					
 				}
-				send(s, "Carta negra recibida", sizeof(sendBuff), 0);
+				//recibir pregunta por carta de la ronda
+				recv(s, recvBuff, sizeof(recvBuff), 0);
+				printf(recvBuff);
+				//responder el numero de la carta que será la respuesta
+				fgets(str, 2, stdin);
+				fflush(stdin);
+				send(s, str, sizeof(sendBuff), 0);
+				//cambio de jugador, el rey siempre es el ultimo y se hace afuera del bucle
 			}
-			//recibir pregunta ronda
-			recv(s, recvBuff, sizeof(recvBuff), 0);
-			printf(recvBuff);
-			//responder el numero de la carta que será la respuesta
-			fgets(str, 2, stdin);
-			fflush(stdin);
-			send(s, str, sizeof(sendBuff), 0);
-			//cambio de jugador, el rey siempre es el ultimo y se hace afuera del bucle
 		}
 
 		//recibir la carta negra de la ronda para el rey
@@ -164,10 +176,37 @@ int main(int argc, char *argv[]) {
 		send(s, "Carta negra recibida", sizeof(sendBuff), 0);
 		for (int i = 0; i < NJ; i++) //equivalente en linea 195 servidor
 		{
-			//recibir las respuestas de los otros jugadores
+			if(i!=TurnoRey){			
+				//recibir las respuestas de los otros jugadores
+				recv(s, recvBuff, sizeof(recvBuff), 0);
+				printf("%i - %s \n", i+1 ,recvBuff);
+				//Responder recepción de la carta
+				send(s, "Carta blaca recibida", sizeof(sendBuff), 0);
+			}
 		}
-		
-
+		//recibir pregunta del servidor por la mejor carta
+		recv(s, recvBuff, sizeof(recvBuff), 0);
+		printf("%s \n", i+1 ,recvBuff);
+		//responder pregunta
+		fgets(str, 2, stdin);
+		fflush(stdin);
+		send(s, str, sizeof(sendBuff), 0);
+		//recibir puntuación actualizada
+		for (int i = 0; i < NJ; i++) 
+		{
+			//recibir la puntuación del jugador x
+			recv(s, recvBuff, sizeof(recvBuff), 0);
+			printf("%s \n" ,recvBuff);
+			int PuntosNuevos;
+			scanf(recvBuff,"%i",PuntosNuevos);
+			listaJ[i].setPuntos(PuntosNuevos);
+			//Responder recepción de la carta
+			send(s, "Puntuación actualizada", sizeof(sendBuff), 0);
+		}
+		cabecera();
+		LineaConsola();
+		LineaJugador(listaJ, NJ);
+		TurnoRey++;
 	}
 
 

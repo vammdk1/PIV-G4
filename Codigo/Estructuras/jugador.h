@@ -28,6 +28,7 @@ class Jugador{
         int getPuntos();
         char* getNombre();
         void setNombre(char* nombre);
+        void setPuntos(int puntos);
         void sumarPuntos(int puntos);
         Carta seleccionarCarta(unsigned int pos);
         void cambiarCarta(Carta* nuevaCarta, int pos);

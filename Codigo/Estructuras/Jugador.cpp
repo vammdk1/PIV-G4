@@ -95,6 +95,9 @@ char* Jugador::getNombre(){
 void Jugador::setNombre(char* nombre){
     strcpy(this->nombre, nombre);
 }
+void Jugador::setPuntos(int puntos){
+    this->puntos = puntos;
+}
 
 void Jugador::sumarPuntos(int puntos){
     this->puntos += puntos;

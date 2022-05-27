@@ -124,87 +124,113 @@ int main(int argc, char *argv[]) {
 	
 	int x = 0;
 	
-	Jugador listaJ[Njugadores];
+	Jugador listaJ[Njugadores]={};
 	// esta usando el tamaño de un caracter
 	
 	while (x<Njugadores)
 	{
-		
 		send(comm_socket, "Introduce los datos del jugador", sizeof(sendBuff), 0);//2a
 		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		if (bytes > 0) {
 			printf("Nombre %s, pos: %i\n", recvBuff,x);
-			listaJ[x] = *(new Jugador(recvBuff));//asignar 7 cartas
+			listaJ[x] = *(new Jugador(recvBuff));//problemas si hay entre 5 y 6 jugadores
+			//listaJ[x].cambiarRey();
+			//carta de prueba
+			//Carta c1 = new Carta(1,"Prueba",3);
+			//listaJ[x].cambiarCarta(c1,0);//asignar 7 cartas
 			x++;
 		}
 		strcpy(recvBuff," ");
 	}
-	printf(listaJ[0].getNombre());
+	printf("Primer nombre de la lista: %s",listaJ[0].esRey());
 
-	//Inicio del juego
+	
 bool FinJuego=false;
 int TurnoRey=0;
-int PosRey;
 int RespuestaCarta;
-Carta ListaRespuestas[Njugadores];
-	while (!FinJuego)
+char ListaRespuestas[Njugadores][20];
+
+//Fase 3
+while (!FinJuego)
+{
+	listaJ[TurnoRey].getNombre();	
+	printf("Ronda %i \n",TurnoRey+1);
+	
+	//sacar carta negra de la base datos
+	send(comm_socket, "Esta es la carta negra de la ronda", sizeof(sendBuff), 0);
+	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+	printf("Respuesta : %s \n", recvBuff);
+	//sacar carta de cada jugador
+	for (int i = 0; i < Njugadores; i++)
 	{
-		listaJ[TurnoRey].cambiarRey();	
-		TurnoRey++;
-		//sacar carta negra de la base datos
-		send(comm_socket, "carta de la ronda", sizeof(sendBuff), 0);
-		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		printf("Data received: %s ", recvBuff);
-		//sacar carta de cada jugador
-		for (int i = 0; i < Njugadores; i++)
-		{
+		if(listaJ[i].getPuntos()==Njugadores){
+			FinJuego = true;
+			break;
+			//enviar fin del juego
+		}else if(i==TurnoRey){
+			printf("El rey es %s \n",listaJ[i].getNombre());
+		}else{
+			//Mandar nombre del jugador
+			send(comm_socket, listaJ[i].getNombre(), sizeof(sendBuff), 0);
+			//recibir confirmacion del nombre
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+			printf("El nombre del jugador de turno es: %s \n", recvBuff);
+			for (int x = 0; x < 7; x++)
+			{
+				//envio de carta blanca
+				send(comm_socket, "carta blanca de prueba", sizeof(sendBuff), 0);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				printf("%s%i devuelta del cliente\n", recvBuff,x);
+			}
+			//pregunta por respuesta de ronda
+			send(comm_socket, "Selecciona una carta: ", sizeof(sendBuff), 0);
+			//recibir numero de la carta de esta ronda
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			
-			if(listaJ[i].esRey()){
-				PosRey=i;
-			}else{
-				int ContadorCartas=0;
-				//Mandar nombre del jugador
-				send(comm_socket, listaJ[i].getNombre(), sizeof(sendBuff), 0);
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				printf("Data received: %s ", recvBuff);
-				do
-				{
-					send(comm_socket, listaJ[i].seleccionarCarta(ContadorCartas), sizeof(sendBuff), 0);
-					ContadorCartas++;
-					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-					printf("Data received: %s ", recvBuff);
-				} while (strcmp(recvBuff,"carta7"));
-				//pregunta por respuesta de ronda
-				send(comm_socket, "Selecciona una carta: ", sizeof(sendBuff), 0);
-				//recibir respuesta de ronda
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				sscanf(recvBuff, "%i",&RespuestaCarta);
-				ListaRespuestas[i]=listaJ[i].seleccionarCarta(RespuestaCarta);
-				if(listaJ[i].getPuntuacion()>=Njugadores){
-					FinJuego = true;
-				}			
-			}	
-		}
-		//turno del rey 
-		//envio de carta negra 
-		send(comm_socket, "carta", sizeof(sendBuff), 0);
-		//rececpcion de respuesta
-		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		printf("Data received: %s ", recvBuff);
-		
-		for (int x = 0; x < Njugadores; x++)
-		{
-			if(x!=PosRey){
-			send(comm_socket, ListaRespuestas[x], sizeof(sendBuff), 0);
+			sscanf(recvBuff, "%i",&RespuestaCarta);
+			//ListaRespuestas[i]=listaJ[i].seleccionarCarta(RespuestaCarta).texto;
+			strcpy(ListaRespuestas[i],recvBuff);
+				
+		}	
+	}
+	//turno del rey 
+	//envio de carta negra 
+	send(comm_socket, "Carta negra del rey", sizeof(sendBuff), 0);
+	//rececpcion de respuesta
+	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+	printf("Data received: %s \n", recvBuff);
+	
+	for (int x = 0; x < Njugadores; x++)
+	{
+		if(x-1!=TurnoRey){
+			send(comm_socket, "Respuesta", sizeof(sendBuff), 0);
 			//rececpcion de respuesta
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-			printf("Data received: %s ", recvBuff);
-			}
-		}		
+			printf("Respuesta seleccionada :%s \n", recvBuff);
+		}
+	}	
+	//enviar pregunta de ganador 	
+	send(comm_socket, "Que carta es la mejor ?", sizeof(sendBuff), 0);
+	//recibir respuesta 
+	int RespuestaPunto;
+	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+	printf("Respuesta: %s \n", recvBuff);
+	scanf(recvBuff,"%i",RespuestaPunto);
+	listaJ[RespuestaPunto].sumarPuntos(1);
+	//enviar infomación actualizada de cada jugador
+	for (int x = 0; x < Njugadores; x++)
+	{
+		char c=char(listaJ[x].getPuntos());
+		//scanf( listaJ[x].getPuntos(),"%c",&temp);
+		send(comm_socket, "1" , sizeof(sendBuff), 0);
+		//rececpcion de respuesta
+		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+		printf("Data received: %s \n", recvBuff);
+		
+	}	
+	TurnoRey++;
 
-		listaJ[TurnoRey-1].cambiarRey();
-	}
-	
+}
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);

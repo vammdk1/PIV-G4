@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 	closesocket(conn_socket);
 	
 	//gameLogic;
-	bool gameFinished = false;
+	
 	char str[50];
 	int Njugadores,Nrondas;
 	
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
 	
 	int x = 0;
 	
-	Jugador listaJ[Njugadores]={};
+	Jugador* listaJ[Njugadores]={};
 	// esta usando el tamaño de un caracter
 	
 	while (x<Njugadores)
@@ -133,7 +133,7 @@ int main(int argc, char *argv[]) {
 		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		if (bytes > 0) {
 			printf("Nombre %s, pos: %i\n", recvBuff,x);
-			listaJ[x] = *(new Jugador(recvBuff));//problemas si hay entre 5 y 6 jugadores
+			(listaJ[x]) = (new Jugador(recvBuff));//problemas si hay entre 5 y 6 jugadores
 			//listaJ[x].cambiarRey();
 			//carta de prueba
 			//Carta c1 = new Carta(1,"Prueba",3);
@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
 		}
 		strcpy(recvBuff," ");
 	}
-	printf("Primer nombre de la lista: %s",listaJ[0].esRey());
+	printf("Primer nombre de la lista: %s\n",(listaJ[0])->getNombre());
 
 	
 bool FinJuego=false;
@@ -153,7 +153,7 @@ char ListaRespuestas[Njugadores][20];
 //Fase 3
 while (!FinJuego)
 {
-	listaJ[TurnoRey].getNombre();	
+	(listaJ[TurnoRey])->getNombre();	
 	printf("Ronda %i \n",TurnoRey+1);
 	
 	//sacar carta negra de la base datos
@@ -163,15 +163,15 @@ while (!FinJuego)
 	//sacar carta de cada jugador
 	for (int i = 0; i < Njugadores; i++)
 	{
-		if(listaJ[i].getPuntos()==Njugadores){
+		if((listaJ[i])->getPuntos()==Njugadores){
 			FinJuego = true;
 			break;
 			//enviar fin del juego
 		}else if(i==TurnoRey){
-			printf("El rey es %s \n",listaJ[i].getNombre());
+			printf("El rey es %s \n",(listaJ[i])->getNombre());
 		}else{
 			//Mandar nombre del jugador
-			send(comm_socket, listaJ[i].getNombre(), sizeof(sendBuff), 0);
+			send(comm_socket, (listaJ[i])->getNombre(), sizeof(sendBuff), 0);
 			//recibir confirmacion del nombre
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			printf("El nombre del jugador de turno es: %s \n", recvBuff);
@@ -197,16 +197,17 @@ while (!FinJuego)
 	//envio de carta negra 
 	send(comm_socket, "Carta negra del rey", sizeof(sendBuff), 0);
 	//rececpcion de respuesta
+	printf("=================================================\n");
 	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 	printf("Data received: %s \n", recvBuff);
-	
+	//Envio de las cartas blancas
 	for (int x = 0; x < Njugadores; x++)
 	{
-		if(x-1!=TurnoRey){
+		if(x!=TurnoRey){
 			send(comm_socket, "Respuesta", sizeof(sendBuff), 0);
 			//rececpcion de respuesta
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-			printf("Respuesta seleccionada :%s \n", recvBuff);
+			printf("%s \n", recvBuff);
 		}
 	}	
 	//enviar pregunta de ganador 	
@@ -215,20 +216,24 @@ while (!FinJuego)
 	int RespuestaPunto;
 	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 	printf("Respuesta: %s \n", recvBuff);
-	scanf(recvBuff,"%i",RespuestaPunto);
-	listaJ[RespuestaPunto].sumarPuntos(1);
+	sscanf(recvBuff,"%i", &RespuestaPunto);
+	
+	(listaJ[RespuestaPunto])->sumarPuntos(1);
+	
 	//enviar infomación actualizada de cada jugador
 	for (int x = 0; x < Njugadores; x++)
 	{
-		char c=char(listaJ[x].getPuntos());
-		//scanf( listaJ[x].getPuntos(),"%c",&temp);
-		send(comm_socket, "1" , sizeof(sendBuff), 0);
+		int c= ((listaJ[x])->getPuntos());
+		string tempS = to_string(c);
+		char const* temp = tempS.c_str();
+		//scanf( listaJ[x]->getPuntos(),"%s",&temp);
+		send(comm_socket, temp , sizeof(sendBuff), 0);
 		//rececpcion de respuesta
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		printf("Data received: %s \n", recvBuff);
 		
 	}	
-	TurnoRey++;
+	TurnoRey = (TurnoRey + 1) % Njugadores;
 
 }
 

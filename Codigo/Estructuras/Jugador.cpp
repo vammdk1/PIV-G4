@@ -18,7 +18,7 @@ Jugador::Jugador(char* nombre){
     this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
     puntos = 0;
-    bool rey = false;
+    rey = false;
 
 }
 Jugador::Jugador(){

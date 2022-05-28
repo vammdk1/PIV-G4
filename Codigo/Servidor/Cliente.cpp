@@ -20,7 +20,12 @@ void cabecera(){
 }
 void LineaJugador(Jugador* nombres[], int longitud){
 	for(int i=0;i<longitud;i++){
-		printf("|| %s |          |          ||\n",nombres[i]->getNombre());
+		if(nombres[i]->esRey){
+			printf("|| %s |     %i     |     *     ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos);
+		}else{
+			printf("|| %s |     %i     |           ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos);
+		}
+		
 	}
 	
 	}

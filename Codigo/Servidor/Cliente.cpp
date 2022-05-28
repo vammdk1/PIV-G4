@@ -20,10 +20,10 @@ void cabecera(){
 }
 void LineaJugador(Jugador* nombres[], int longitud){
 	for(int i=0;i<longitud;i++){
-		if(nombres[i]->esRey){
-			printf("|| %s |     %i     |     *     ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos);
+		if(nombres[i]->esRey()){
+			printf("|| %s |     %i     |     *     ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos());
 		}else{
-			printf("|| %s |     %i     |           ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos);
+			printf("|| %s |     %i     |           ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos());
 		}
 		
 	}
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     char* SERVER_IP;
     int SERVER_PORT = 6000;
     std::ifstream myfile;
-    myfile.open("../../Archivos/.config");
+    myfile.open("../Archivos/.config");
     
     int lineNumber = 0;
     for( std::string line; getline( myfile, line ); )
@@ -107,6 +107,9 @@ int main(int argc, char *argv[]) {
 	int NJ ;
 	sscanf(str, "%i",&NJ);
 	//Fase 2 
+	if(NJ < 4){
+		NJ = 4;
+	}
 	int i =0;
 	Jugador* listaJ[NJ]={};
 	while (i<NJ)
@@ -142,36 +145,50 @@ int main(int argc, char *argv[]) {
 			send(s, "Carta negra recibida", sizeof(sendBuff), 0);
 		for (int x = 0; x < NJ; x++)
 		{
-			if((listaJ[x])->getPuntos()==NJ){
+			int bytes = recv(s, recvBuff, sizeof(recvBuff), 0);
+			/*while(true){
+				cout << "Esperando mensaje del Servidor" << endl;
+				if(bytes > 0){
+					break;
+				}
+			}*/
+			
+			if(bytes > 0){
+				if((listaJ[x])->getPuntos()==NJ){
 				FinJuego = true;
 				break;
-			//enviar fin del juego
-			}else if(x==TurnoRey){
-				printf("este es el jugador rey, pasar al siguiente\n");
-			}else{
-				//recibir Nombre del jugador x
-				recv(s, recvBuff, sizeof(recvBuff), 0);
-				printf("Turno de: %s \n", recvBuff);
-				//responder receipción de nombre
-				send(s, recvBuff, sizeof(sendBuff), 0);
-				for (int i = 0; i < 7; i++)
-				{
-					//recibir carta blanca
-					recv(s, recvBuff, sizeof(recvBuff), 0);
-					printf("%s \n", recvBuff);
-					//enviar confirmacion de carta
-					send(s, "Carta blanca ", sizeof(sendBuff), 0);
+				//enviar fin del juego
+				}else if(x==TurnoRey){
+					printf("este es el jugador rey, pasar al siguiente\n");
 					
+				}else{
+					
+					cout << "";
+					//recibir Nombre del jugador x
+					recv(s, recvBuff, sizeof(recvBuff), 0);
+					printf("Turno de: %s \n", recvBuff);
+					//responder receipción de nombre
+					send(s, recvBuff, sizeof(sendBuff), 0);
+					for (int i = 0; i < 7; i++)
+					{
+						//recibir carta blanca
+						recv(s, recvBuff, sizeof(recvBuff), 0);
+						printf("%s \n", recvBuff);
+						//enviar confirmacion de carta
+						send(s, "Carta blanca ", sizeof(sendBuff), 0);
+						
+					}
+					//recibir pregunta por carta de la ronda
+					recv(s, recvBuff, sizeof(recvBuff), 0);
+					printf(recvBuff);
+					//responder el numero de la carta que será la respuesta
+					fgets(str, 2, stdin);
+					fflush(stdin);
+					send(s, str, sizeof(sendBuff), 0);
+					//cambio de jugador, el rey siempre es el ultimo y se hace afuera del bucle
 				}
-				//recibir pregunta por carta de la ronda
-				recv(s, recvBuff, sizeof(recvBuff), 0);
-				printf(recvBuff);
-				//responder el numero de la carta que será la respuesta
-				fgets(str, 2, stdin);
-				fflush(stdin);
-				send(s, str, sizeof(sendBuff), 0);
-				//cambio de jugador, el rey siempre es el ultimo y se hace afuera del bucle
 			}
+			
 		}
 
 		//recibir la carta negra de la ronda para el rey
@@ -201,7 +218,7 @@ int main(int argc, char *argv[]) {
 		{
 			//recibir la puntuación del jugador x
 			recv(s, recvBuff, sizeof(recvBuff), 0);
-			printf("%s \n" ,recvBuff);
+			
 			int PuntosNuevos;
 			sscanf(recvBuff,"%i", &PuntosNuevos);
 			(listaJ[i])->setPuntos(PuntosNuevos);

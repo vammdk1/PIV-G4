@@ -22,7 +22,7 @@ Con todos los .o --> g++ -o coso.exe todos.o
 Para insertar nuevas cartas de forma masiva, primero vacia los txt y luego ejecuta leeTexto.exe
 
 Compilar el Cliente:
-g++ -o Cliente.exe Cliente.o ../Estructuras/Jugador.o ../Estructuras/carta.o -l ws2_32
+g++ -o ../../Ejecutables/Cliente.exe Cliente.o ../Estructuras/Jugador.o ../Estructuras/carta.o -l ws2_32
 
 Compilar el Servidor
-g++ -o Servidor.exe Servidor.o ../Estructuras/Jugador.o ../Estructuras/carta.o ../DataBase/DataBase.o ../DataBase/sqlite3.o -L ../DataBase/shell.o -l ws2_32
+g++ -o ../../Ejecutables/Servidor.exe Servidor.o ../Estructuras/Jugador.o ../Estructuras/carta.o ../DataBase/DataBase.o ../DataBase/sqlite3.o -L ../DataBase/shell.o -l ws2_32

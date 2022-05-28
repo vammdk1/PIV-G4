@@ -18,6 +18,7 @@ class Jugador{
         char* nombre;
         int puntos;
         bool rey;
+        int id;
     public:
         Jugador();
         Jugador(char* nombre);
@@ -32,6 +33,8 @@ class Jugador{
         void sumarPuntos(int puntos);
         Carta seleccionarCarta(unsigned int pos);
         void cambiarCarta(Carta* nuevaCarta, int pos);
+        void setID(int id);
+        int getID();
 
 };
 

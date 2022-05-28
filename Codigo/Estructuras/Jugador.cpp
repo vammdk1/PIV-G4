@@ -112,4 +112,12 @@ void Jugador::cambiarCarta(Carta* nuevaCarta, int pos){
     arrayCartas[pos].negra = nuevaCarta->negra;
     freeTexto(&(this->arrayCartas[pos]));
     setTexto(&(arrayCartas[pos]), nuevaCarta->texto);
+    delete nuevaCarta;
+}
+
+void Jugador::setID(int id){
+    this->id = id;
+}
+int Jugador::getID(){
+    return id;
 }

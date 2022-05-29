@@ -121,6 +121,7 @@ int main(int argc, char *argv[]) {
 			while(true){
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				if(strcmp(recvBuff, "Que carta elijes? :") == 0){
+					printf("\n", recvBuff);
 					fgets(str, 2, stdin);
 					fflush(stdin);
 					strcpy(sendBuff, str);
@@ -143,6 +144,7 @@ int main(int argc, char *argv[]) {
 
 					} while (true);
 				}else if(strcmp(recvBuff, "fin") == 0){
+					send(s, "Confirmacion de fin", sizeof(sendBuff), 0);
 					recv(s, recvBuff, sizeof(recvBuff), 0);
 					printf("el ganador es : %s",recvBuff);
 					final=!final;

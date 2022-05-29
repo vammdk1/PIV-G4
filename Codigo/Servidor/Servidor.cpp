@@ -160,10 +160,10 @@ do{
 		}
 			
 		send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
-		printf("cambio a fase 2")
+		printf("cambio a fase 2\n");
 		do {
 			for(int i =0; i<Njugadores;i++){
-				if(false){
+				if(true){
 					send(comm_socket, "jugador [x]", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					do {
 						int JugadoR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
@@ -193,7 +193,7 @@ do{
 						if (bytes > 0) {
 							printf(" %s \n", recvBuff);//Jugador r confirmado
 							int temp0=0;
-							scanf(recvBuff,"%i",temp0);
+							//scanf(recvBuff,"%i",temp0);
 							//agregar en la lista de cartas la carta en la pos temp0
 							break;
 						}
@@ -224,25 +224,50 @@ do{
 					if (SelecciopnReyR > 0) {
 						printf(" %s \n", recvBuff);//Jugador r confirmado
 						int temp1=0;
-						scanf(recvBuff,"%i",temp1);
+						//scanf(recvBuff,"%i",temp1);
 						//agregar al jugador temp1 un punto
 						break;
 					}
 
 				} while (1);
+				printf("cambio de rey\n");
 				//desacivar rey
 				posRey++;
 				//activar siguiente rey
+				for(int i =0; i<Njugadores;i++){//comprobación del ganador
+					if(false){
+						// un jugador tiene el mismo numero de puntos que numero de jugadores 
+						send(comm_socket, "fin", sizeof(sendBuff), 0);//cambiar mensaje en cliente
+						do {
+						int FinR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
+							if (FinR > 0) {
+									printf(" %s \n", recvBuff);//fin r confirmado
+									send(comm_socket, "Ganador X", sizeof(sendBuff), 0);//cambiar mensaje en cliente
+									JuegoFin=!JuegoFin;
+									break;
+							}
+						} while (1);
+						printf("-------------------------------------------\n");
+						break;
+					}
+				}
+				printf("cambio de ronda");
+				send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 				break;
-		
+					
 
 			} while(1);
 		
+			printf("1\n");
+			if (strcmp(recvBuff, "Confirmacion de fin") == 0){
+				break;
+			}
 		}while (1);
 
-	
-	if (strcmp(recvBuff, "Fin f1") == 0){
-		break;
+		printf("2\n");
+		if (strcmp(recvBuff, "Confirmacion de fin") == 0){
+			break;
+		}
 	}
 }while(!JuegoFin);
 

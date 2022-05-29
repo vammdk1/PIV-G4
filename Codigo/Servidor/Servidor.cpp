@@ -129,6 +129,7 @@ int main(int argc, char *argv[]) {
 	sscanf(getLastPlayerID(db), "%i", &lastPlayer);
 	sscanf(getLastGameID(db), "%i", &lastGame);
 	bool JuegoFin=false;
+	
 
 
 do{
@@ -138,8 +139,8 @@ do{
 		printf("recibiendo numero de jugadores \n");
 		printf("jugadores recibidos: %s \n", recvBuff);
 		sscanf(recvBuff, "%i",&Njugadores);//asignar numero de jugadores
-		Jugador listaJ[Njugadores];
-		Carta listaC[Njugadores];
+		Jugador* listaJ[Njugadores];
+		//Carta listaC[Njugadores];
 		printf("%i \n",Njugadores);
 		for(int i = 0;i<Njugadores;i++){
 			send(comm_socket, "Nombre del jugador", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
@@ -149,9 +150,42 @@ do{
 				if (bytes > 0) {
 					printf("Recibiendo nombre %i \n",i);
 					printf("Data received: %s \n", recvBuff);	
-					//crear jugador				
-					//if(posRey= i) jugador.rey=true;
+					//crear jugador	
+					listaJ[i] = new Jugador(recvBuff);
+					char temp[3];
+					lastPlayer++;
+
+					listaJ[i]->setID(lastPlayer);
+					sprintf(temp, "%i", lastPlayer);	
+					insertNewPlayerData(db, recvBuff, temp); //Jugador insertado en la base de datos		
+					if(posRey == i){
+						listaJ[i]->cambiarRey();
+					} 
 					//asignar cartas
+					for(int x = 0; x<7; x++){
+				
+						char tempWhiteCard[100];
+						char tempIDwc[4];
+						
+						sprintf(tempIDwc, "%i", currentWhiteCard);
+						
+						strcpy(tempWhiteCard, selectWhiteCard(db, tempIDwc));
+						currentWhiteCard = ((currentWhiteCard + 1) % maxWhiteCard);
+						if(currentWhiteCard == 0){
+							currentWhiteCard++;
+						}
+						
+						
+						Carta* carta = new Carta();
+						
+						setTexto(carta, tempWhiteCard);
+						carta->id = 0;
+						carta->negra = 0;
+						
+						listaJ[i]->cambiarCarta(carta, x);
+						
+					
+					}
 					break;
 					}
 			} while (1);
@@ -162,9 +196,18 @@ do{
 		send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 		printf("cambio a fase 2\n");
 		do {
-			for(int i =0; i<Njugadores;i++){
+			char listaRespuestas[Njugadores][100];
+			char tempBlackCard[100];
+			char tempIDbc[4];
+			sprintf(tempIDbc, "%i", currentBlacCard);
+			strcpy(tempBlackCard, selectBlackCard(db, tempIDbc));
+			currentBlacCard = ((currentBlacCard + 1) % maxBlackCard);
+			if(currentBlacCard == 0){
+				currentBlacCard++;
+			}
+			for(int i = 0; i<Njugadores;i++){
 				if(true){
-					send(comm_socket, "jugador [x]", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
+					send(comm_socket, listaJ[i]->getNombre(), sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					do {
 						int JugadoR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 						if (bytes > 0) {
@@ -175,25 +218,41 @@ do{
 					//fase de envio de 7 cartas seguidas
 					for(int x =0; x<8;x++){
 						//enviar carta
-						send(comm_socket, "carta", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-						printf("pregunta enviada: %s \n", sendBuff);
-						do {
-							int CartaR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
-								if (bytes > 0) {
-										printf(" %s \n", recvBuff);//carta r confirmado
-										break;
-								}
-						} while (1);
+						if(x == 7){
+							send(comm_socket, tempBlackCard, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
+							printf("pregunta enviada: %s \n", sendBuff);
+							do {
+								int CartaR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
+									if (bytes > 0) {
+											printf(" %s \n", recvBuff);//carta r confirmado
+											break;
+									}
+							} while (1);
+						} else {
+							
+							send(comm_socket, listaJ[i]->seleccionarCarta(x).texto, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
+							printf("pregunta enviada: %s \n", sendBuff);
+							do {
+								int CartaR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
+									if (bytes > 0) {
+											printf(" %s \n", recvBuff);//carta r confirmado
+											break;
+									}
+							} while (1);
+						}
+						
 					}
 					//fase de respuesta de ronda de jugadorx
 					send(comm_socket, "Que carta elijes? :", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					printf("pregunta por carta: %s \n", sendBuff);
 					do {
+						cout << "LLEGO" << endl;
 						int SeleccionR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 						if (bytes > 0) {
 							printf(" %s \n", recvBuff);//Jugador r confirmado
 							int temp0=0;
-							//scanf(recvBuff,"%i",temp0);
+							sscanf(recvBuff,"%i", &temp0);
+							strcpy(listaRespuestas[i], listaJ[i]->seleccionarCarta(temp0 - 1).texto);
 							//agregar en la lista de cartas la carta en la pos temp0
 							break;
 						}
@@ -204,9 +263,10 @@ do{
 			send(comm_socket, "Rey", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 			do {
 				//fase de envio de 8 cartas de respuesta
-				for(int x =0; x<8;x++){
+				for(int x =0; x<Njugadores;x++){
 					//enviar carta
-					send(comm_socket, "carta del rey", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
+					
+					send(comm_socket, listaRespuestas[x], sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					printf("pregunta enviada: %s \n", sendBuff);
 					do {
 						int ReyR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
@@ -226,23 +286,26 @@ do{
 						int temp1=0;
 						//scanf(recvBuff,"%i",temp1);
 						//agregar al jugador temp1 un punto
+						listaJ[temp1]->sumarPuntos(1);
 						break;
 					}
 
 				} while (1);
 				printf("cambio de rey\n");
 				//desacivar rey
-				posRey++;
+				listaJ[posRey]->cambiarRey();
+				posRey = (posRey + 1) % Njugadores;
+				listaJ[posRey]->cambiarRey();
 				//activar siguiente rey
 				for(int i =0; i<Njugadores;i++){//comprobación del ganador
-					if(false){
+					if(listaJ[i]->getPuntos() == Njugadores){
 						// un jugador tiene el mismo numero de puntos que numero de jugadores 
 						send(comm_socket, "fin", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 						do {
 						int FinR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 							if (FinR > 0) {
 									printf(" %s \n", recvBuff);//fin r confirmado
-									send(comm_socket, "Ganador X", sizeof(sendBuff), 0);//cambiar mensaje en cliente
+									send(comm_socket, listaJ[i]->getNombre(), sizeof(sendBuff), 0);//cambiar mensaje en cliente
 									JuegoFin=!JuegoFin;
 									break;
 							}
@@ -252,7 +315,7 @@ do{
 					}
 				}
 				printf("cambio de ronda");
-				send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
+			//	send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 				break;
 					
 

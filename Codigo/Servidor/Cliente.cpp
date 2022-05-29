@@ -151,6 +151,7 @@ int main(int argc, char *argv[]) {
 					break;	
 				}else{
 					printf("- %s \n",recvBuff);
+					
 					send(s, "Confirmacion", sizeof(sendBuff), 0);
 				}
 				

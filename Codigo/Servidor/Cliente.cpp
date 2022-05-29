@@ -57,7 +57,8 @@ int main(int argc, char *argv[]) {
         //out << line << endl;
     }
     myfile.close();
-    
+    std::ofstream loggerFile;
+	loggerFile.open("../Archivos/Logger.txt");
 
 	WSADATA wsaData;
 	SOCKET s;
@@ -70,6 +71,7 @@ int main(int argc, char *argv[]) {
 		printf("Failed. Error Code : %d", WSAGetLastError());
 		return -1;
 	}
+	
 
 	//printf("Initialised.\n");
 
@@ -104,7 +106,7 @@ int main(int argc, char *argv[]) {
 	fflush(stdin);
 	strcpy(sendBuff, str);
 	send(s, sendBuff, sizeof(sendBuff), 0); //1a
-
+	loggerFile << "Numero de jugadores: " << str << "\n";
 	bool final=false;
 	int NJ ;
 	sscanf(str, "%i",&NJ);
@@ -112,12 +114,14 @@ int main(int argc, char *argv[]) {
 		//fase1
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 		if(strcmp(recvBuff, "Nombre del jugador") == 0){
-			printf("Introduce el nombre del : ");
+			loggerFile << "Introducir jugador \n";
+			printf("Introduce el nombre del jugador: ");
 			fgets(str, 20, stdin);
 			fflush(stdin);
 			strcpy(sendBuff, str);
 			send(s, sendBuff, sizeof(sendBuff), 0);
 		}else if(strcmp(recvBuff, "inicio F2") == 0){
+			loggerFile << "Inicio Fase 2\n";
 			while(true){
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				if(strcmp(recvBuff, "Que carta elijes? :") == 0){
@@ -126,6 +130,7 @@ int main(int argc, char *argv[]) {
 					fflush(stdin);
 					strcpy(sendBuff, str);
 					send(s, sendBuff, sizeof(sendBuff), 0);
+					loggerFile << "Eleccion de carta: " << sendBuff << "\n";
 				}else if(strcmp(recvBuff, "Rey") == 0){
 					do
 					{
@@ -136,10 +141,12 @@ int main(int argc, char *argv[]) {
 							fflush(stdin);
 							strcpy(sendBuff, str);
 							send(s, sendBuff, sizeof(sendBuff), 0);
+							loggerFile << "Eleccion de carta: " << sendBuff << "\n";
 							break;
 						}else{	
 							printf("- %s \n",recvBuff);
 							send(s, "Confirmacion de cartas", sizeof(sendBuff), 0);
+							loggerFile << "Carta leida\n";
 							}
 
 					} while (true);
@@ -147,12 +154,14 @@ int main(int argc, char *argv[]) {
 					send(s, "Confirmacion de fin", sizeof(sendBuff), 0);
 					recv(s, recvBuff, sizeof(recvBuff), 0);
 					printf("el ganador es : %s",recvBuff);
+					loggerFile << "Ganador establecido: " << recvBuff << "\n";
 					final=!final;
 					break;	
 				}else{
 					printf("- %s \n",recvBuff);
 					
 					send(s, "Confirmacion", sizeof(sendBuff), 0);
+					loggerFile << "Enviada confirmacion: " << recvBuff <<"\n";
 				}
 				
 				
@@ -162,8 +171,8 @@ int main(int argc, char *argv[]) {
 
 	}
 
-
-	
+	loggerFile << "Final\n";
+	loggerFile.close();
 
 
 	// CLOSING the socket and cleaning Winsock...

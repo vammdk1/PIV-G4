@@ -254,7 +254,27 @@ do{
 							sscanf(recvBuff,"%i", &temp0);
 							strcpy(listaRespuestas[i], listaJ[i]->seleccionarCarta(temp0 - 1).texto);
 							//agregar en la lista de cartas la carta en la pos temp0
-							break;
+							//Cambiar la carta
+							char tempWhiteCard2[100];
+							char tempIDwc2[4];
+							
+							sprintf(tempIDwc2, "%i", currentWhiteCard);
+							
+							strcpy(tempWhiteCard2, selectWhiteCard(db, tempIDwc2));
+							currentWhiteCard = ((currentWhiteCard + 1) % maxWhiteCard);
+							if(currentWhiteCard == 0){
+								currentWhiteCard++;
+							}
+							
+							
+							Carta* carta = new Carta();
+							
+							setTexto(carta, tempWhiteCard2);
+							carta->id = 0;
+							carta->negra = 0;
+							
+							listaJ[i]->cambiarCarta(carta, temp0 -1);
+								break;
 						}
 
 					} while (1);
@@ -307,6 +327,12 @@ do{
 									printf(" %s \n", recvBuff);//fin r confirmado
 									send(comm_socket, listaJ[i]->getNombre(), sizeof(sendBuff), 0);//cambiar mensaje en cliente
 									JuegoFin=!JuegoFin;
+									char gameID[3];
+									lastGame++;
+									sprintf(gameID, "%i", lastGame);
+									char playerID[3];
+									sprintf(playerID, "%i", listaJ[i]->getID());
+									insertNewGameData(db, gameID, playerID);
 									break;
 							}
 						} while (1);

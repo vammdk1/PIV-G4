@@ -1,17 +1,17 @@
-#ifndef _ADMIN_H_
-#define _ADMIN_H_
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
 #include <string>
 #include <iostream>
 #include "Usuario.h"
 #include "../DataBase/UserDatabase.h"
-class Admin : public Usuario
+class Player : public Usuario
 {
 private:
     
 public:
-    Admin();
-    Admin(std::string nombre, std::string contra);
-    virtual ~Admin();
+    Player();
+    Player(std::string nombre, std::string contra);
+    virtual ~Player();
 
     virtual bool login(UserDatabase *udb);
     virtual void signup(UserDatabase *udb);

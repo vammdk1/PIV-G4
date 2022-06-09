@@ -3,7 +3,10 @@
 #include <string>
 #include <iostream>
 #include "Usuario.h"
-#include "../DataBase/UserDatabase.h"
+extern "C"{
+    #include "../DataBase/DataBase.h"
+    #include <string.h>
+}
 class Admin : public Usuario
 {
 private:
@@ -13,8 +16,8 @@ public:
     Admin(std::string nombre, std::string contra);
     virtual ~Admin();
 
-    virtual bool login(UserDatabase *udb);
-    virtual void signup(UserDatabase *udb);
+    virtual bool login(sqlite3 *db);
+    virtual void signup(sqlite3 *db);
 
     virtual void execute();
 };

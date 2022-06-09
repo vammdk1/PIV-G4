@@ -10,14 +10,24 @@ Admin::~Admin(){
 
 }
 
-bool Admin::login(UserDatabase *udb){
+bool Admin::login(sqlite3 *db){
     std::string temp;
-    temp = udb->selectPlayer(this->contrasena.c_str(), this->nombre.c_str());
+    char* name;
+    char* passw;
+    strcpy(name, this->nombre.c_str());
+    strcpy(passw, this->contrasena.c_str());
+    temp = selectUser(db, name, passw);
     return temp != "error" &&  temp == "1";
 }
-void Admin::signup(UserDatabase *udb){
-    std::string admin = "1";
-    udb->insertNewUser(this->nombre.c_str(), this->contrasena.c_str(), admin.c_str())
+void Admin::signup(sqlite3 *db){
+   std::string player = "1";
+   char* name;
+   char* passw;
+   char* p;
+   strcpy(name, this->nombre.c_str());
+   strcpy(passw, this->contrasena.c_str());
+   strcpy(p, player.c_str());
+   insertNewUser(db, name,passw,p);
 }
 void Admin::execute(){
     std::cout << "EJECUTAR" << std::endl;

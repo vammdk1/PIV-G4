@@ -27,6 +27,9 @@ Compilar el Servidor
 g++ -c Servidor.cpp -o Servidor.o
 g++ -o ../../Ejecutables/Servidor.exe Servidor.o ../Estructuras/Jugador.o ../Estructuras/carta.o ../DataBase/DataBase.o ../DataBase/sqlite3.o -L ../DataBase/shell.o -l ws2_32
 
+Compilar el Launcher
+g++ -o ../../Ejecutables/Launcher.exe Launcher.o Admin.o Usuario.o Player.o ../Database/Database.o ../DataBase/sqlite3.o -L ../DataBase/shell.o
+
 ============================================================================
 Recargado de la base de datos:
 

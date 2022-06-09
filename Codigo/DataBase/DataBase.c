@@ -59,6 +59,15 @@ int createTables(sqlite3 *db){
     sqlite3_finalize(statement5);
     insertNewGameData(db, "0","0");
 
+     sqlite3_stmt *statement6;
+    char sql6[] = "CREATE TABLE USUARIOS(CONTRA VARCHAR(50) NOT NULL, NOMBRE VARCHAR(50), ADMIN INT NOT NULL, PRIMARY KEY (CONTRA));";
+    int result6 = sqlite3_prepare_v2(db, sql6, -1, &statement6, 0) ;
+    sqlite3_step(statement6);
+    sqlite3_finalize(statement6);
+   
+    insertNewUser(db, "No", "Salir", "0");
+    
+
    printf("Tablas creadas\n");
 
 }
@@ -89,6 +98,13 @@ int deleteTables(sqlite3 *db){
     int result5 = sqlite3_prepare_v2(db, sql5, -1, &statement5, 0) ;
     sqlite3_step(statement5);
     sqlite3_finalize(statement5);
+
+    sqlite3_stmt *statement6;
+    char sql6[] = "DROP TABLE USUARIOS;";
+    int result6 = sqlite3_prepare_v2(db, sql6, -1, &statement6, 0) ;
+    sqlite3_step(statement6);
+    sqlite3_finalize(statement6);
+    
 
     printf("Tablas Eliminadas\n");
 
@@ -203,6 +219,33 @@ int insertNewGameData(sqlite3 *db, char* gameID, char* playerID){
     }
 
     printf("Partida Insertada\n");
+    return 0;
+}
+int insertNewUser(sqlite3 *db,char* nombre,char* contra,char* admin){
+    sqlite3_stmt *statement;
+   
+    char sql[250] = " ";
+    strcat(sql, "INSERT INTO USUARIOS(CONTRA, NOMBRE, ADMIN) VALUES ('");
+    strcat(sql,contra);
+    strcat(sql,"', '");
+    strcat(sql,nombre);
+    strcat(sql,"', ");
+    strcat(sql,admin);
+    strcat(sql,");");
+    int result = sqlite3_prepare_v2(db, sql, -1, &statement, NULL) ;
+
+    
+    sqlite3_step(statement);
+    sqlite3_finalize(statement);
+  
+
+    if(result != SQLITE_OK){
+        printf("Error\n");
+        printf("%s\n", sqlite3_errmsg(db));
+        return result;
+    }
+    
+    printf("Usuario Insertado\n");
     return 0;
 }
 
@@ -348,6 +391,43 @@ char* selectGameWinner(sqlite3 *db, char* ID){
     
     
      
+    
+  
+        return ret;
+    }
+    
+    return "error";
+}
+char* selectUser(sqlite3 *db, char* contra, char* nombre){
+    sqlite3_stmt *statement;
+    char sql[250] = " ";
+    strcat(sql, "SELECT ADMIN FROM USUARIOS WHERE CONTRA = '");
+    strcat(sql,contra);
+    strcat(sql,"' AND NOMBRE = '");
+    strcat(sql,nombre);
+    strcat(sql, "';");
+    printf("%s\n", sql);
+    
+    int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
+    if(result != SQLITE_OK){
+         printf("Error\n");
+         printf("%s\n", sqlite3_errmsg(db));
+          return "error";
+        }
+    
+    if(sqlite3_step(statement) == SQLITE_ROW){
+        
+        
+        const char* text = sqlite3_column_text(statement,0);
+       
+       
+    
+        char* ret = (char*) malloc(sizeof(char)*strlen(text)+1);
+        strcpy(ret, text);
+        sqlite3_finalize(statement);
+    
+    
+       
     
   
         return ret;

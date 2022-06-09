@@ -11,11 +11,13 @@ int insertNewWhiteCard(sqlite3 *db, char* text, char* ID);
 int insertNewBlackCard(sqlite3 *db, char* text, char* ID);
 int insertNewPlayerData(sqlite3 *db, char* text, char* ID);
 int insertNewGameData(sqlite3 *db, char* gameID, char* playerID);
+int insertNewUser(sqlite3 *db, char* nombre, char* contra, char* admin);
 
 char* selectWhiteCard(sqlite3 *db, char* ID); //Devuelve el texto, porq el id ya lo tenemos al mandarlo
 char* selectBlackCard(sqlite3 *db, char* ID);
 char* selectPlayer(sqlite3 *db, char* ID);
 char* selectGameWinner(sqlite3 *db, char* ID);
+char* selectUser(sqlite3 *db, char* nombre, char* contra);
 
 char* getLastWhiteCardID(sqlite3 *db);
 char* getLastBlackCardID(sqlite3 *db);

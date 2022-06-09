@@ -58,22 +58,22 @@ int main(int argc, char *argv[]) {
 	char sendBuff[512], recvBuff[512];
 	
 
-	printf("\nInitialising Winsock...\n");
+	cout<<"\nInitialising Winsock..."<<endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-		printf("Failed. Error Code : %d", WSAGetLastError());
+		cout<<"Failed. Error Code : "<< WSAGetLastError()<<endl;
 		return -1;
 	}
 
-	printf("Initialised.\n");
+	cout<<"Initialised."<<endl;
 
 	//SOCKET creation
 	if ((conn_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-		printf("Could not create socket : %d", WSAGetLastError());
+		cout<<"Could not create socket : "<< WSAGetLastError()<<endl;
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Socket created.\n");
+	cout<<"Socket created"<<endl;
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -82,35 +82,34 @@ int main(int argc, char *argv[]) {
 	//BIND (the IP/port with socket)
 	if (bind(conn_socket, (struct sockaddr*) &server,
 			sizeof(server)) == SOCKET_ERROR) {
-		printf("Bind failed with error code: %d", WSAGetLastError());
+		cout<<"Bind failed with error code: "<< WSAGetLastError()<<endl;
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Bind done.\n");
+	cout<<"Bind done"<<endl;
 
 	//LISTEN to incoming connections (socket server moves to listening mode)
 	if (listen(conn_socket, 1) == SOCKET_ERROR) {
-		printf("Listen failed with error code: %d", WSAGetLastError());
+		cout<<"Listen failed with error code: "<< WSAGetLastError()<<endl;
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
 
 	//ACCEPT incoming connections (server keeps waiting for them)
-	printf("Waiting for incoming connections...\n");
+	cout<<"Waiting for incoming connections..."<<endl;
 	int stsize = sizeof(struct sockaddr);
 	comm_socket = accept(conn_socket, (struct sockaddr*) &client, &stsize);
 	// Using comm_socket is able to send/receive data to/from connected client
 	if (comm_socket == INVALID_SOCKET) {
-		printf("accept failed with error code : %d", WSAGetLastError());
+		cout<<"accept failed with error code : "<< WSAGetLastError()<<endl;
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
-	printf("Incomming connection from: %s (%d)\n", inet_ntoa(client.sin_addr),
-			ntohs(client.sin_port));
+	cout<<"Incomming connection from: "<< inet_ntoa(client.sin_addr) << ntohs(client.sin_port)<<endl;
 
 	// Closing the listening sockets (is not going to be used anymore)
 	closesocket(conn_socket);
@@ -139,22 +138,22 @@ do{
 	int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 	if (bytes > 0) {
 		//fase1 seleccionar jugadores
-		printf("recibiendo numero de jugadores \n");
-		printf("jugadores recibidos: %s \n", recvBuff);
+		cout<<"recibiendo numero de jugadores "<<endl;
+		cout<<"jugadores recibidos: " <<recvBuff <<endl;
 		sscanf(recvBuff, "%i",&Njugadores);//asignar numero de jugadores
 		//loggerFile << "Jugadores recividos: \n";
 		Jugador* listaJ[Njugadores];
 		//Carta listaC[Njugadores];
-		printf("%i \n",Njugadores);
+		cout<<Njugadores<<endl;
 		for(int i = 0;i<Njugadores;i++){
 			strcpy(sendBuff,  "Nombre del jugador");
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-			printf("pregunta enviada: %s \n", sendBuff);
+			cout<<"pregunta enviada: "<< sendBuff<<endl;
 			do {
 				int fase1 = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 				if (bytes > 0) {
-					printf("Recibiendo nombre %i \n",i);
-					printf("Data received: %s \n", recvBuff);	
+					cout<<"Recibiendo nombre " <<i<<endl;
+					cout<<"Data received: "<< recvBuff<<endl;
 					
 					//crear jugador	
 					listaJ[i] = new Jugador(recvBuff);
@@ -204,7 +203,7 @@ do{
 		//loggerFile << "Inicio F2\n";
 		strcpy(sendBuff,"inicio F2");
 		send(comm_socket, sendBuff, sizeof(sendBuff), 0);//cambiar mensaje en cliente
-		printf("cambio a fase 2\n");
+		cout<<"cambio a fase 2"<<endl;
 		do {
 			char listaRespuestas[Njugadores][100];
 			char tempBlackCard[100];
@@ -222,7 +221,7 @@ do{
 					do {
 						int JugadoR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 						if (bytes > 0) {
-								printf(" %s \n", recvBuff);//Jugador r confirmado
+								cout<<recvBuff<<endl;//Jugador r confirmado
 								break;
 							}
 					} while (1);
@@ -232,22 +231,22 @@ do{
 						if(x == 7){
 							strcpy(sendBuff,tempBlackCard);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-							printf("pregunta enviada: %s \n", sendBuff);
+							cout<<"pregunta enviada: "<< sendBuff <<endl;
 							do {
 								int CartaR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 									if (bytes > 0) {
-											printf(" %s \n", recvBuff);//carta r confirmado
+											cout<<recvBuff<<endl;//carta r confirmado
 											break;
 									}
 							} while (1);
 						} else {
 							strcpy(sendBuff, listaJ[i]->seleccionarCarta(x).texto);
 							send(comm_socket,sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-							printf("pregunta enviada: %s \n", sendBuff);
+							cout<<"pregunta enviada: "<< sendBuff <<endl;
 							do {
 								int CartaR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 									if (bytes > 0) {
-											printf(" %s \n", recvBuff);//carta r confirmado
+											cout<< recvBuff<<endl;//carta r confirmado
 											break;
 									}
 							} while (1);
@@ -260,12 +259,12 @@ do{
 					//fase de respuesta de ronda de jugadorx
 					strcpy(sendBuff, "Que carta elijes? :");
 					send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-					printf("pregunta por carta: %s \n", sendBuff);
+					cout<<"pregunta por carta: "<<sendBuff<<endl;
 					do {
 						cout << "LLEGO" << endl;
 						int SeleccionR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 						if (bytes > 0) {
-							printf(" %s \n", recvBuff);//Jugador r confirmado
+							cout<< recvBuff<<endl;//Jugador r confirmado
 							int temp0=0;
 							sscanf(recvBuff,"%i", &temp0);
 							strcpy(listaRespuestas[i], listaJ[i]->seleccionarCarta(temp0 - 1).texto);
@@ -308,11 +307,11 @@ do{
 					//enviar carta
 					strcpy(sendBuff, listaRespuestas[x]);
 					send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-					printf("pregunta enviada: %s \n", sendBuff);
+					cout<<"pregunta enviada: "<< sendBuff<<endl;
 					do {
 						int ReyR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 							if (ReyR > 0) {
-									printf(" %s \n", recvBuff);//carta r confirmado
+									cout<<recvBuff<<endl;//carta r confirmado
 									break;
 							}
 					} while (1);
@@ -320,11 +319,11 @@ do{
 				} 
 				strcpy(sendBuff, "Que carta gana? :");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
-				printf("pregunta por carta: %s \n", sendBuff);
+				cout<<"pregunta por carta:  "<< sendBuff<<endl;
 				do {
 					int SelecciopnReyR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 					if (SelecciopnReyR > 0) {
-						printf(" %s \n", recvBuff);//Jugador r confirmado
+						cout<<recvBuff<<endl;//Jugador r confirmado
 						int temp1=0;
 						//scanf(recvBuff,"%i",temp1);
 						//agregar al jugador temp1 un punto
@@ -336,7 +335,7 @@ do{
 					}
 
 				} while (1);
-				printf("cambio de rey\n");
+				cout<<"cambio de rey"<<endl;
 				//desacivar rey
 				listaJ[posRey]->cambiarRey();
 				posRey = (posRey + 1) % Njugadores;
@@ -350,7 +349,7 @@ do{
 						do {
 						int FinR = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);//pregunta si hay mensajes
 							if (FinR > 0) {
-									printf(" %s \n", recvBuff);//fin r confirmado
+									cout<<recvBuff<<endl;//fin r confirmado
 									strcpy(sendBuff,listaJ[i]->getNombre());
 									send(comm_socket, sendBuff, sizeof(sendBuff), 0);//cambiar mensaje en cliente
 									JuegoFin=!JuegoFin;
@@ -363,24 +362,24 @@ do{
 									break;
 							}
 						} while (1);
-						printf("-------------------------------------------\n");
+						cout<<"-------------------------------------------"<<endl;
 						break;
 					}
 				}
-				printf("cambio de ronda");
+				cout<<"cambio de ronda"<<endl;
 			//	send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 				break;
 					
 
 			} while(1);
 		
-			printf("1\n");
+			cout<<"1"<<endl;
 			if (strcmp(recvBuff, "Confirmacion de fin") == 0){
 				break;
 			}
 		}while (1);
 
-		printf("2\n");
+		cout<<"2"<<endl;
 		if (strcmp(recvBuff, "Confirmacion de fin") == 0){
 			break;
 		}

@@ -13,18 +13,20 @@ extern "C"{
 using namespace std;
 
 void cabecera(){
-	printf("+------------------------------------+\n|+----------------------------------+|\n");
-	printf("||                                  ||\n");
-	printf("||     CMD CONTRA LA HUMANIDAD      ||\n");
-	printf("||                                  ||\n");
-	printf("++----------------------------------++\n++----------------------------------++\n");
+	cout<<"+------------------------------------+"<<endl;
+	cout<<"|+----------------------------------+|"<<endl;
+	cout<<"||                                  ||"<<endl;
+	cout<<"||     CMD CONTRA LA HUMANIDAD      ||"<<endl;
+	cout<<"||                                  ||"<<endl;
+	cout<<"++----------------------------------++"<<endl;
+	cout<<"++----------------------------------++"<<endl;
 }
 void LineaJugador(Jugador* nombres[], int longitud){
 	for(int i=0;i<longitud;i++){
 		if(nombres[i]->esRey()){
-			printf("|| %s |     %i     |     *     ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos());
+			cout<<"||"<<nombres[i]->getNombre()<<"||"<<nombres[i]->getPuntos()<<"||*||"<<endl;
 		}else{
-			printf("|| %s |     %i     |           ||\n",nombres[i]->getNombre(),nombres[i]->getPuntos());
+			cout<<"||"<<nombres[i]->getNombre()<<"||"<<nombres[i]->getPuntos()<<"|| ||"<<endl;
 		}
 		
 	}
@@ -32,7 +34,9 @@ void LineaJugador(Jugador* nombres[], int longitud){
 	}
 
 void LineaConsola(){
-	printf("++-----------+----------+-----------++\n|| Jugadores | Puntos   |   Rey     ||\n--------------------------------------\n");
+	cout<<"++-----------+----------+-----------++"<<endl;
+	cout<<"|| Jugadores | Puntos   |   Rey     ||"<<endl;
+	cout<<"--------------------------------------"<<endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -68,7 +72,7 @@ int main(int argc, char *argv[]) {
 
 	//printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-		printf("Failed. Error Code : %d", WSAGetLastError());
+		cout<<"Failed. Error Code : "<< WSAGetLastError()<<endl;
 		return -1;
 	}
 	
@@ -77,7 +81,7 @@ int main(int argc, char *argv[]) {
 
 	//SOCKET creation
 	if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-		printf("Could not create socket : %d", WSAGetLastError());
+		cout<<"Could not create socket : "<< WSAGetLastError()<<endl;
 		WSACleanup();
 		return -1;
 	}
@@ -90,7 +94,7 @@ int main(int argc, char *argv[]) {
 
 	//CONNECT to remote server
 	if (connect(s, (struct sockaddr*) &server, sizeof(server)) == SOCKET_ERROR) {
-		printf("Connection error: %d", WSAGetLastError());
+		cout<<"Connection error: "<<WSAGetLastError()<<endl;
 		closesocket(s);
 		WSACleanup();
 		return -1;
@@ -101,7 +105,7 @@ int main(int argc, char *argv[]) {
 
 	//Fase 1
 	
-	printf("Introduce el numero de jugadores: ");
+	cout<<"Introduce el numero de jugadores: "<<endl;
 	fgets(str, 2, stdin);
 	fflush(stdin);
 	strcpy(sendBuff, str);
@@ -115,7 +119,7 @@ int main(int argc, char *argv[]) {
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 		if(strcmp(recvBuff, "Nombre del jugador") == 0){
 			loggerFile << "Introducir jugador \n";
-			printf("Introduce el nombre del jugador: ");
+			cout<<"Introduce el nombre del jugador: "<<endl;
 			fgets(str, 20, stdin);
 			fflush(stdin);
 			strcpy(sendBuff, str);
@@ -125,7 +129,7 @@ int main(int argc, char *argv[]) {
 			while(true){
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				if(strcmp(recvBuff, "Que carta elijes? :") == 0){
-					printf("\n", recvBuff);
+					cout<<recvBuff<<endl;
 					fgets(str, 2, stdin);
 					fflush(stdin);
 					strcpy(sendBuff, str);
@@ -136,7 +140,7 @@ int main(int argc, char *argv[]) {
 					{
 						recv(s, recvBuff, sizeof(recvBuff), 0);
 						if(strcmp(recvBuff, "Que carta gana? :") == 0){
-							printf(" %s \n", recvBuff);
+							cout<< recvBuff<<endl;
 							fgets(str, 2, stdin);
 							fflush(stdin);
 							strcpy(sendBuff, str);
@@ -144,7 +148,7 @@ int main(int argc, char *argv[]) {
 							loggerFile << "Eleccion de carta: " << sendBuff << "\n";
 							break;
 						}else{	
-							printf("- %s \n",recvBuff);
+							cout << recvBuff<<endl;
 							send(s, "Confirmacion de cartas", sizeof(sendBuff), 0);
 							loggerFile << "Carta leida\n";
 							}
@@ -153,12 +157,12 @@ int main(int argc, char *argv[]) {
 				}else if(strcmp(recvBuff, "fin") == 0){
 					send(s, "Confirmacion de fin", sizeof(sendBuff), 0);
 					recv(s, recvBuff, sizeof(recvBuff), 0);
-					printf("el ganador es : %s",recvBuff);
+					cout<<"el ganador es : "<<recvBuff<<endl;
 					loggerFile << "Ganador establecido: " << recvBuff << "\n";
 					final=!final;
 					break;	
 				}else{
-					printf("- %s \n",recvBuff);
+					cout<<recvBuff<<endl;
 					
 					send(s, "Confirmacion", sizeof(sendBuff), 0);
 					loggerFile << "Enviada confirmacion: " << recvBuff <<"\n";

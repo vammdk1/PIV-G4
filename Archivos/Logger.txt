@@ -1,4 +1,5 @@
-Numero de jugadores: 3
+Numero de jugadores: 4
+Introducir jugador 
 Introducir jugador 
 Introducir jugador 
 Introducir jugador 
@@ -22,7 +23,7 @@ Enviada confirmacion: Comer helado cuando hace frio
 Enviada confirmacion: Que es ese sonido?
 
 Eleccion de carta: 1
-Enviada confirmacion: b
+Enviada confirmacion: s
 
 Enviada confirmacion: La mejor provincia del Pais Vasco
 
@@ -41,7 +42,7 @@ Enviada confirmacion: Viajar mucho
 Enviada confirmacion: Que es ese sonido?
 
 Eleccion de carta: 1
-Enviada confirmacion: c
+Enviada confirmacion: d
 
 Enviada confirmacion: Italia
 
@@ -60,74 +61,114 @@ Enviada confirmacion: Una carrera por la montaña
 Enviada confirmacion: Que es ese sonido?
 
 Eleccion de carta: 1
-Carta leida
-Carta leida
-Carta leida
-Eleccion de carta: 1
-Enviada confirmacion: a
+Enviada confirmacion: f
 
 Enviada confirmacion: Aizkorri
 
-Enviada confirmacion: Un bocadillo de Mayonesa
-
-Enviada confirmacion: Agua potable
-
-Enviada confirmacion: Un gato
-
-Enviada confirmacion: Fideua
-
-Enviada confirmacion: Voldemort
-
-Enviada confirmacion: Comer helado cuando hace frio
-
-Enviada confirmacion: A que huele?
-
-Eleccion de carta: 1
-Enviada confirmacion: b
-
 Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Una cama sin muelles
-
-Enviada confirmacion: El BMW del Need for Speed Most Wanted
-
-Enviada confirmacion: Doraemon
-
-Enviada confirmacion: Eurobeat
-
-Enviada confirmacion: Una servilleta de papel
-
-Enviada confirmacion: Viajar mucho
-
-Enviada confirmacion: A que huele?
-
-Eleccion de carta: 1
-Enviada confirmacion: c
 
 Enviada confirmacion: Ducharse
 
-Enviada confirmacion: Nurburgring
+Enviada confirmacion: Creerte DaVinci
 
-Enviada confirmacion: Un martillo
+Enviada confirmacion: Minecraft
 
-Enviada confirmacion: Comer sin hambre
+Enviada confirmacion: Video
 
-Enviada confirmacion: Digimon
+Enviada confirmacion: Estrella de la radio
 
-Enviada confirmacion: La muela del juicio
-
-Enviada confirmacion: Una carrera por la montaña
-
-Enviada confirmacion: A que huele?
+Enviada confirmacion: Que es ese sonido?
 
 Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida
 Eleccion de carta: 1
 Enviada confirmacion: a
 
+Enviada confirmacion: Una bolsa de papel
+
+Enviada confirmacion: Un bocadillo de Mayonesa
+
+Enviada confirmacion: Agua potable
+
+Enviada confirmacion: Un gato
+
+Enviada confirmacion: Fideua
+
+Enviada confirmacion: Voldemort
+
+Enviada confirmacion: Comer helado cuando hace frio
+
+Enviada confirmacion: A que huele?
+
+Eleccion de carta: 1
+Enviada confirmacion: s
+
+Enviada confirmacion: Carton
+
+Enviada confirmacion: Una cama sin muelles
+
+Enviada confirmacion: El BMW del Need for Speed Most Wanted
+
+Enviada confirmacion: Doraemon
+
+Enviada confirmacion: Eurobeat
+
+Enviada confirmacion: Una servilleta de papel
+
+Enviada confirmacion: Viajar mucho
+
+Enviada confirmacion: A que huele?
+
+Eleccion de carta: 1
+Enviada confirmacion: d
+
+Enviada confirmacion: Un leñador
+
+Enviada confirmacion: Nurburgring
+
+Enviada confirmacion: Un martillo
+
+Enviada confirmacion: Comer sin hambre
+
+Enviada confirmacion: Digimon
+
+Enviada confirmacion: La muela del juicio
+
+Enviada confirmacion: Una carrera por la montaña
+
+Enviada confirmacion: A que huele?
+
+Eleccion de carta: 1
+Enviada confirmacion: f
+
+Enviada confirmacion: Macarrones
+
+Enviada confirmacion: Mirar por la ventana
+
+Enviada confirmacion: Ducharse
+
 Enviada confirmacion: Creerte DaVinci
+
+Enviada confirmacion: Minecraft
+
+Enviada confirmacion: Video
+
+Enviada confirmacion: Estrella de la radio
+
+Enviada confirmacion: A que huele?
+
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Enviada confirmacion: a
+
+Enviada confirmacion: Empanadas
 
 Enviada confirmacion: Un bocadillo de Mayonesa
 
@@ -144,9 +185,9 @@ Enviada confirmacion: Comer helado cuando hace frio
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
-Enviada confirmacion: b
+Enviada confirmacion: s
 
-Enviada confirmacion: Minecraft
+Enviada confirmacion: Oompa Loompas
 
 Enviada confirmacion: Una cama sin muelles
 
@@ -163,9 +204,9 @@ Enviada confirmacion: Viajar mucho
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
-Enviada confirmacion: c
+Enviada confirmacion: d
 
-Enviada confirmacion: Video
+Enviada confirmacion: Ser GOTY dos años seguidos
 
 Enviada confirmacion: Nurburgring
 
@@ -182,6 +223,107 @@ Enviada confirmacion: Una carrera por la montaña
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
+Enviada confirmacion: f
+
+Enviada confirmacion: Un pokemon bueno
+
+Enviada confirmacion: Mirar por la ventana
+
+Enviada confirmacion: Ducharse
+
+Enviada confirmacion: Creerte DaVinci
+
+Enviada confirmacion: Minecraft
+
+Enviada confirmacion: Video
+
+Enviada confirmacion: Estrella de la radio
+
+Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Enviada confirmacion: a
+
+Enviada confirmacion: Sonic en 3D
+
+Enviada confirmacion: Un bocadillo de Mayonesa
+
+Enviada confirmacion: Agua potable
+
+Enviada confirmacion: Un gato
+
+Enviada confirmacion: Fideua
+
+Enviada confirmacion: Voldemort
+
+Enviada confirmacion: Comer helado cuando hace frio
+
+Enviada confirmacion: Quien esta ahi?
+
+Eleccion de carta: 1
+Enviada confirmacion: s
+
+Enviada confirmacion: La PlayStation
+
+Enviada confirmacion: Una cama sin muelles
+
+Enviada confirmacion: El BMW del Need for Speed Most Wanted
+
+Enviada confirmacion: Doraemon
+
+Enviada confirmacion: Eurobeat
+
+Enviada confirmacion: Una servilleta de papel
+
+Enviada confirmacion: Viajar mucho
+
+Enviada confirmacion: Quien esta ahi?
+
+Eleccion de carta: 1
+Enviada confirmacion: d
+
+Enviada confirmacion: Girar puertas
+
+Enviada confirmacion: Nurburgring
+
+Enviada confirmacion: Un martillo
+
+Enviada confirmacion: Comer sin hambre
+
+Enviada confirmacion: Digimon
+
+Enviada confirmacion: La muela del juicio
+
+Enviada confirmacion: Una carrera por la montaña
+
+Enviada confirmacion: Quien esta ahi?
+
+Eleccion de carta: 1
+Enviada confirmacion: f
+
+Enviada confirmacion: Una puerta giratoria
+
+Enviada confirmacion: Mirar por la ventana
+
+Enviada confirmacion: Ducharse
+
+Enviada confirmacion: Creerte DaVinci
+
+Enviada confirmacion: Minecraft
+
+Enviada confirmacion: Video
+
+Enviada confirmacion: Estrella de la radio
+
+Enviada confirmacion: Quien esta ahi?
+
+Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida

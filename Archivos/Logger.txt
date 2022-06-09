@@ -1,5 +1,4 @@
-Numero de jugadores: 4
-Introducir jugador 
+Numero de jugadores: 3
 Introducir jugador 
 Introducir jugador 
 Introducir jugador 
@@ -22,7 +21,7 @@ Enviada confirmacion: Comer helado cuando hace frio
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 3
+Eleccion de carta: 1
 Enviada confirmacion: b
 
 Enviada confirmacion: La mejor provincia del Pais Vasco
@@ -41,7 +40,7 @@ Enviada confirmacion: Viajar mucho
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 3
+Eleccion de carta: 1
 Enviada confirmacion: c
 
 Enviada confirmacion: Italia
@@ -60,38 +59,18 @@ Enviada confirmacion: Una carrera por la montaña
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 3
-Enviada confirmacion: d
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Enviada confirmacion: a
 
 Enviada confirmacion: Aizkorri
 
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Ducharse
-
-Enviada confirmacion: Creerte DaVinci
-
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: Que es ese sonido?
-
-Eleccion de carta: 3
-Carta leida
-Carta leida
-Carta leida
-Carta leida
-Eleccion de carta: 3
-Enviada confirmacion: a
-
-Enviada confirmacion: Suzuki Escudo
-
 Enviada confirmacion: Un bocadillo de Mayonesa
 
-Enviada confirmacion: Una bolsa de papel
+Enviada confirmacion: Agua potable
 
 Enviada confirmacion: Un gato
 
@@ -103,14 +82,14 @@ Enviada confirmacion: Comer helado cuando hace frio
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 3
+Eleccion de carta: 1
 Enviada confirmacion: b
 
-Enviada confirmacion: La mejor provincia del Pais Vasco
+Enviada confirmacion: Mirar por la ventana
 
 Enviada confirmacion: Una cama sin muelles
 
-Enviada confirmacion: Carton
+Enviada confirmacion: El BMW del Need for Speed Most Wanted
 
 Enviada confirmacion: Doraemon
 
@@ -122,14 +101,14 @@ Enviada confirmacion: Viajar mucho
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 3
+Eleccion de carta: 1
 Enviada confirmacion: c
 
-Enviada confirmacion: Italia
+Enviada confirmacion: Ducharse
 
 Enviada confirmacion: Nurburgring
 
-Enviada confirmacion: Un leñador
+Enviada confirmacion: Un martillo
 
 Enviada confirmacion: Comer sin hambre
 
@@ -141,38 +120,18 @@ Enviada confirmacion: Una carrera por la montaña
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 3
-Enviada confirmacion: d
-
-Enviada confirmacion: Aizkorri
-
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Macarrones
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Enviada confirmacion: a
 
 Enviada confirmacion: Creerte DaVinci
 
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: A que huele?
-
-Eleccion de carta: 3
-Carta leida
-Carta leida
-Carta leida
-Carta leida
-Eleccion de carta: 3
-Enviada confirmacion: a
-
-Enviada confirmacion: Suzuki Escudo
-
 Enviada confirmacion: Un bocadillo de Mayonesa
 
-Enviada confirmacion: Empanadas
+Enviada confirmacion: Agua potable
 
 Enviada confirmacion: Un gato
 
@@ -184,11 +143,49 @@ Enviada confirmacion: Comer helado cuando hace frio
 
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Eleccion de carta: 3
+Eleccion de carta: 1
 Enviada confirmacion: b
 
-Enviada confirmacion: La mejor provincia del Pais Vasco
+Enviada confirmacion: Minecraft
 
 Enviada confirmacion: Una cama sin muelles
 
-Enviada confirmacion: 
+Enviada confirmacion: El BMW del Need for Speed Most Wanted
+
+Enviada confirmacion: Doraemon
+
+Enviada confirmacion: Eurobeat
+
+Enviada confirmacion: Una servilleta de papel
+
+Enviada confirmacion: Viajar mucho
+
+Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+
+Eleccion de carta: 1
+Enviada confirmacion: c
+
+Enviada confirmacion: Video
+
+Enviada confirmacion: Nurburgring
+
+Enviada confirmacion: Un martillo
+
+Enviada confirmacion: Comer sin hambre
+
+Enviada confirmacion: Digimon
+
+Enviada confirmacion: La muela del juicio
+
+Enviada confirmacion: Una carrera por la montaña
+
+Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Ganador establecido: a
+
+Final

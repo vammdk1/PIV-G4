@@ -4,7 +4,7 @@ Introducir jugador
 Introducir jugador 
 Introducir jugador 
 Inicio Fase 2
-Enviada confirmacion: Aimar
+Enviada confirmacion: kgj
 
 Enviada confirmacion: Obesidad.
 
@@ -22,8 +22,8 @@ Enviada confirmacion: Incesto.
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 1
-Enviada confirmacion: Jose
+Eleccion de carta: 3
+Enviada confirmacion: djgj
 
 Enviada confirmacion: Ser rico.
 
@@ -41,8 +41,8 @@ Enviada confirmacion: Declaracion de los Derechos Humanos.
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 1
-Enviada confirmacion: Mario
+Eleccion de carta: 3
+Enviada confirmacion: afh
 
 Enviada confirmacion: Preadolescentes.
 
@@ -60,8 +60,8 @@ Enviada confirmacion: Jose Maria Aznar.
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 1
-Enviada confirmacion: Calamardo
+Eleccion de carta: 3
+Enviada confirmacion: adj
 
 Enviada confirmacion: Gente que huele sus propios calcetines.
 
@@ -79,20 +79,20 @@ Enviada confirmacion: Cachorritos.
 
 Enviada confirmacion: Que es ese sonido?
 
-Eleccion de carta: 1
+Eleccion de carta: 3
 Carta leida
 Carta leida
 Carta leida
 Carta leida
-Eleccion de carta1
-Enviada confirmacion: Aimar
+Eleccion de carta: 3
+Enviada confirmacion: kgj
+
+Enviada confirmacion: Obesidad.
+
+Enviada confirmacion: Seleccion natural.
 
 Enviada confirmacion: La abuelita.
 
-Enviada confirmacion: Seleccion natural.
-
-Enviada confirmacion: Necrofilia.
-
 Enviada confirmacion: Las vias del metro.
 
 Enviada confirmacion: Los discapacitados profundos.
@@ -103,15 +103,15 @@ Enviada confirmacion: Incesto.
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 1
-Enviada confirmacion: Jose
+Eleccion de carta: 3
+Enviada confirmacion: djgj
+
+Enviada confirmacion: Ser rico.
+
+Enviada confirmacion: Una pistola de agua llena de meado de gato.
 
 Enviada confirmacion: Tener la mandibula inmobilizada.
 
-Enviada confirmacion: Una pistola de agua llena de meado de gato.
-
-Enviada confirmacion: Motosierras en vez de manos.
-
 Enviada confirmacion: El corazon de un niño.
 
 Enviada confirmacion: Lepra.
@@ -122,15 +122,15 @@ Enviada confirmacion: Declaracion de los Derechos Humanos.
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 1
-Enviada confirmacion: Mario
+Eleccion de carta: 3
+Enviada confirmacion: afh
+
+Enviada confirmacion: Preadolescentes.
+
+Enviada confirmacion: El Papa.
 
 Enviada confirmacion: Ropa interior comestible.
 
-Enviada confirmacion: El Papa.
-
-Enviada confirmacion: Los niños de la guerra.
-
 Enviada confirmacion: Una tortura china.
 
 Enviada confirmacion: Oompa Loompas.
@@ -141,15 +141,15 @@ Enviada confirmacion: Jose Maria Aznar.
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 1
-Enviada confirmacion: Calamardo
+Eleccion de carta: 3
+Enviada confirmacion: adj
+
+Enviada confirmacion: Gente que huele sus propios calcetines.
+
+Enviada confirmacion: Catapultas.
 
 Enviada confirmacion: Sentir miedo de ti mismo.
 
-Enviada confirmacion: Catapultas.
-
-Enviada confirmacion: Un hombre de mediana edad en patines.
-
 Enviada confirmacion: Artefactos explosivos caseros.
 
 Enviada confirmacion: Peleas de pollos.
@@ -160,20 +160,20 @@ Enviada confirmacion: Cachorritos.
 
 Enviada confirmacion: A que huele?
 
-Eleccion de carta: 1
+Eleccion de carta: 3
 Carta leida
 Carta leida
 Carta leida
 Carta leida
-Eleccion de carta1
-Enviada confirmacion: Aimar
+Eleccion de carta: 3
+Enviada confirmacion: kgj
+
+Enviada confirmacion: Obesidad.
+
+Enviada confirmacion: Seleccion natural.
 
 Enviada confirmacion: Pajaros que no pueden volar.
 
-Enviada confirmacion: Seleccion natural.
-
-Enviada confirmacion: Necrofilia.
-
 Enviada confirmacion: Las vias del metro.
 
 Enviada confirmacion: Los discapacitados profundos.
@@ -184,15 +184,15 @@ Enviada confirmacion: Incesto.
 
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Eleccion de carta: 1
-Enviada confirmacion: Jose
+Eleccion de carta: 3
+Enviada confirmacion: djgj
+
+Enviada confirmacion: Ser rico.
+
+Enviada confirmacion: Una pistola de agua llena de meado de gato.
 
 Enviada confirmacion: Herpes labial.
 
-Enviada confirmacion: Una pistola de agua llena de meado de gato.
-
-Enviada confirmacion: Motosierras en vez de manos.
-
 Enviada confirmacion: El corazon de un niño.
 
 Enviada confirmacion: Lepra.
@@ -203,14 +203,14 @@ Enviada confirmacion: Declaracion de los Derechos Humanos.
 
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Eleccion de carta: 1
-Enviada confirmacion: Mario
+Eleccion de carta: 3
+Enviada confirmacion: afh
 
-Enviada confirmacion: Un malentendido guarrete.
+Enviada confirmacion: Preadolescentes.
 
 Enviada confirmacion: El Papa.
 
-Enviada confirmacion: Los niños de la guerra.
+Enviada confirmacion: Un malentendido guarrete.
 
 Enviada confirmacion: Una tortura china.
 
@@ -222,14 +222,14 @@ Enviada confirmacion: Jose Maria Aznar.
 
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Eleccion de carta: 1
-Enviada confirmacion: Calamardo
+Eleccion de carta: 3
+Enviada confirmacion: adj
 
-Enviada confirmacion: Abdominales espectaculares.
+Enviada confirmacion: Gente que huele sus propios calcetines.
 
 Enviada confirmacion: Catapultas.
 
-Enviada confirmacion: Un hombre de mediana edad en patines.
+Enviada confirmacion: Abdominales espectaculares.
 
 Enviada confirmacion: Artefactos explosivos caseros.
 
@@ -241,19 +241,19 @@ Enviada confirmacion: Cachorritos.
 
 Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Eleccion de carta: 1
+Eleccion de carta: 3
 Carta leida
 Carta leida
 Carta leida
 Carta leida
-Eleccion de carta1
-Enviada confirmacion: Aimar
+Eleccion de carta: 3
+Enviada confirmacion: kgj
 
-Enviada confirmacion: Una explosion termonuclear.
+Enviada confirmacion: Obesidad.
 
 Enviada confirmacion: Seleccion natural.
 
-Enviada confirmacion: Necrofilia.
+Enviada confirmacion: Una explosion termonuclear.
 
 Enviada confirmacion: Las vias del metro.
 
@@ -265,14 +265,14 @@ Enviada confirmacion: Incesto.
 
 Enviada confirmacion: Por que estoy pegajoso?
 
-Eleccion de carta: 1
-Enviada confirmacion: Jose
+Eleccion de carta: 3
+Enviada confirmacion: djgj
 
-Enviada confirmacion: Un molino lleno de cadaveres.
+Enviada confirmacion: Ser rico.
 
 Enviada confirmacion: Una pistola de agua llena de meado de gato.
 
-Enviada confirmacion: Motosierras en vez de manos.
+Enviada confirmacion: Un molino lleno de cadaveres.
 
 Enviada confirmacion: El corazon de un niño.
 
@@ -284,14 +284,14 @@ Enviada confirmacion: Declaracion de los Derechos Humanos.
 
 Enviada confirmacion: Por que estoy pegajoso?
 
-Eleccion de carta: 1
-Enviada confirmacion: Mario
+Eleccion de carta: 3
+Enviada confirmacion: afh
 
-Enviada confirmacion: Solos de saxofon.
+Enviada confirmacion: Preadolescentes.
 
 Enviada confirmacion: El Papa.
 
-Enviada confirmacion: Los niños de la guerra.
+Enviada confirmacion: Solos de saxofon.
 
 Enviada confirmacion: Una tortura china.
 
@@ -303,14 +303,14 @@ Enviada confirmacion: Jose Maria Aznar.
 
 Enviada confirmacion: Por que estoy pegajoso?
 
-Eleccion de carta: 1
-Enviada confirmacion: Calamardo
+Eleccion de carta: 3
+Enviada confirmacion: adj
 
-Enviada confirmacion: Quitarte la camiseta.
+Enviada confirmacion: Gente que huele sus propios calcetines.
 
 Enviada confirmacion: Catapultas.
 
-Enviada confirmacion: Un hombre de mediana edad en patines.
+Enviada confirmacion: Quitarte la camiseta.
 
 Enviada confirmacion: Artefactos explosivos caseros.
 
@@ -322,12 +322,12 @@ Enviada confirmacion: Cachorritos.
 
 Enviada confirmacion: Por que estoy pegajoso?
 
-Eleccion de carta: 1
+Eleccion de carta: 3
 Carta leida
 Carta leida
 Carta leida
 Carta leida
-Eleccion de carta1
-Ganador establecido: Aimar
+Eleccion de carta: 3
+Ganador establecido: kgj
 
 Final

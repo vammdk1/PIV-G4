@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
     myfile.close();
 	cout << SERVER_IP << endl;
 	cout << SERVER_PORT << endl;
+	std::ofstream loggerFile;
+	loggerFile.open("../Archivos/ServerLogger.txt");
     
 	WSADATA wsaData;
 	SOCKET conn_socket;
@@ -112,7 +114,8 @@ int main(int argc, char *argv[]) {
 
 	// Closing the listening sockets (is not going to be used anymore)
 	closesocket(conn_socket);
-	
+	loggerFile << "Servidor iniciado\n";
+	loggerFile.close();
 	//gameLogic;
 	
 	char str[50];
@@ -139,6 +142,7 @@ do{
 		printf("recibiendo numero de jugadores \n");
 		printf("jugadores recibidos: %s \n", recvBuff);
 		sscanf(recvBuff, "%i",&Njugadores);//asignar numero de jugadores
+		//loggerFile << "Jugadores recividos: \n";
 		Jugador* listaJ[Njugadores];
 		//Carta listaC[Njugadores];
 		printf("%i \n",Njugadores);
@@ -150,6 +154,7 @@ do{
 				if (bytes > 0) {
 					printf("Recibiendo nombre %i \n",i);
 					printf("Data received: %s \n", recvBuff);	
+					
 					//crear jugador	
 					listaJ[i] = new Jugador(recvBuff);
 					char temp[3];
@@ -186,13 +191,16 @@ do{
 						
 					
 					}
+					loggerFile.open("../Archivos/ServerLogger.txt", std::ios_base::app);
+					loggerFile << "Jugador creado\n";
+					loggerFile.close();
 					break;
 					}
 			} while (1);
 			//printf("%i \n",Njugadores);
 			//ver como mandar imágenes, usar control por mensaje
 		}
-			
+		//loggerFile << "Inicio F2\n";
 		send(comm_socket, "inicio F2", sizeof(sendBuff), 0);//cambiar mensaje en cliente
 		printf("cambio a fase 2\n");
 		do {
@@ -242,6 +250,9 @@ do{
 						}
 						
 					}
+					loggerFile.open("../Archivos/ServerLogger.txt", std::ios_base::app);
+					loggerFile << "Cartas Enviadas\n";
+					loggerFile.close();
 					//fase de respuesta de ronda de jugadorx
 					send(comm_socket, "Que carta elijes? :", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					printf("pregunta por carta: %s \n", sendBuff);
@@ -274,10 +285,14 @@ do{
 							carta->negra = 0;
 							
 							listaJ[i]->cambiarCarta(carta, temp0 -1);
-								break;
+							loggerFile.open("../Archivos/ServerLogger.txt", std::ios_base::app);
+							loggerFile << "Carta elegida\n";
+							loggerFile.close();
+							break;
 						}
 
 					} while (1);
+					
 				}
 			}
 			send(comm_socket, "Rey", sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
@@ -307,6 +322,9 @@ do{
 						//scanf(recvBuff,"%i",temp1);
 						//agregar al jugador temp1 un punto
 						listaJ[temp1]->sumarPuntos(1);
+						loggerFile.open("../Archivos/ServerLogger.txt", std::ios_base::app);
+						loggerFile << "Carta rey elegida\n";
+						loggerFile.close();
 						break;
 					}
 
@@ -360,10 +378,13 @@ do{
 	}
 }while(!JuegoFin);
 
-
+	loggerFile.open("../Archivos/ServerLogger.txt", std::ios_base::app);
+	loggerFile << "Final\n";
+	loggerFile.close();
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();
+
 
 	return 0;
 }

@@ -406,7 +406,7 @@ char* selectUser(sqlite3 *db, char* contra, char* nombre){
     strcat(sql,"' AND NOMBRE = '");
     strcat(sql,nombre);
     strcat(sql, "';");
-    printf("%s\n", sql);
+    
     
     int result = sqlite3_prepare_v2(db,sql,-1,&statement, 0);
     if(result != SQLITE_OK){

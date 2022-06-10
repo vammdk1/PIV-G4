@@ -17,7 +17,7 @@ char* selectWhiteCard(sqlite3 *db, char* ID); //Devuelve el texto, porq el id ya
 char* selectBlackCard(sqlite3 *db, char* ID);
 char* selectPlayer(sqlite3 *db, char* ID);
 char* selectGameWinner(sqlite3 *db, char* ID);
-char* selectUser(sqlite3 *db, char* nombre, char* contra);
+char* selectUser(sqlite3 *db, char* contra, char* nombre);
 
 char* getLastWhiteCardID(sqlite3 *db);
 char* getLastBlackCardID(sqlite3 *db);

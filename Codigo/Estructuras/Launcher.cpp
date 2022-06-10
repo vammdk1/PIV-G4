@@ -12,7 +12,8 @@ extern "C"{
 int main()
 {
     sqlite3 *db;
-    sqlite3_open("../Archivos/database.db" , &db);
+    std::string ruta = "../Archivos/database.db";
+    sqlite3_open(ruta.c_str() , &db);
     std::cout << "Bienvenido a el launcher oficial de CMD contra la humanidad" << std::endl;
     std::string respuesta = "";
     while (respuesta != "5")
@@ -28,14 +29,19 @@ int main()
             std::cout << "Contrasena?" << std::endl;
             std::cin >> contra;
             Player *p = new Player(nombre, contra);
-            std::cout << "fjf";
+            
             bool loginOk = p->login(db);
             if(loginOk){
-                std::cout << "Login adecuado, Ejecutar juego? [S/N]" << std::endl;
+                std::cout << "Login adecuado, Ejecutar Servidor? [S/N]" << std::endl;
+                std::cout << "NOTA: El cliente debe ser ejecutado manualmente" << std::endl;
                 std::cin >> respuesta;
                 if(respuesta == "S"){
+                    sqlite3_close(db);
                     p->execute();
+                    sqlite3_open(ruta.c_str() , &db);
                 }
+            } else {
+                std::cout << "Login inadecuado, por favor asegurese de que sus credenciales son correctas y que tiene una cuenta en CMD contra la humanidad" << std::endl;
             }
             delete p;
 
@@ -59,18 +65,18 @@ int main()
             std::cout << "Contrasena?" << std::endl;
             std::cin >> contra;
             Admin *p = new Admin(nombre, contra);
-            if(p->login(db)){
-                std::cout << "Reiniciar base de datos de usuarios? [S/N]" << std::endl;
-                std::string respuesta2;
-                std::cin >> respuesta2;
-                if(respuesta2 == "S"){
-                   
-                }
+            bool loginOk = p->login(db);
+            if(loginOk){
+                
                 std::cout << "Login adecuado, Ejecutar Gestion de base de datos? [S/N]" << std::endl;
                 std::cin >> respuesta;
                 if(respuesta == "S"){
+                    sqlite3_close(db);
                     p->execute();
+                    sqlite3_open(ruta.c_str() , &db);
                 }
+            }else{
+                std::cout << "Login inadecuado, por favor asegurese de que sus credenciales son correctas y que tiene una cuenta en CMD contra la humanidad" << std::endl;
             }
             delete p;
         }else if (respuesta == "4")
@@ -84,8 +90,10 @@ int main()
             Admin *p = new Admin(nombre, contra);
             p->signup(db);
             delete p;
-        }else if (respuesta != "5")
+        }else if (respuesta == "7")
         {
+            system("color 01");
+        } else if(respuesta != "5"){
             std::cout << "Respuesta no valida" << std::endl;
         }
 

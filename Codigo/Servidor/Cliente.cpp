@@ -2,6 +2,7 @@
 extern "C"{
     #include <stdio.h>
     #include <winsock2.h>
+	#include <stdlib.h>
 	#include "../Estructuras/jugador.h"
 	//#include "../Estructuras/carta.h"
 }
@@ -9,6 +10,7 @@ extern "C"{
 #include <fstream>
 #include <sstream>
 #include <cstring>
+
 
 using namespace std;
 
@@ -21,23 +23,7 @@ void cabecera(){
 	cout<<"++----------------------------------++"<<endl;
 	cout<<"++----------------------------------++"<<endl;
 }
-void LineaJugador(Jugador* nombres[], int longitud){
-	for(int i=0;i<longitud;i++){
-		if(nombres[i]->esRey()){
-			cout<<"||"<<nombres[i]->getNombre()<<"||"<<nombres[i]->getPuntos()<<"||*||"<<endl;
-		}else{
-			cout<<"||"<<nombres[i]->getNombre()<<"||"<<nombres[i]->getPuntos()<<"|| ||"<<endl;
-		}
-		
-	}
-	
-	}
 
-void LineaConsola(){
-	cout<<"++-----------+----------+-----------++"<<endl;
-	cout<<"|| Jugadores | Puntos   |   Rey     ||"<<endl;
-	cout<<"--------------------------------------"<<endl;
-}
 
 char* controlador(int min, int max,string mensaje, string error,char* resp){
 	while (1)
@@ -122,19 +108,7 @@ int main(int argc, char *argv[]) {
 
 	//Fase 1
 	cabecera();
-	/**
-	while (1)
-	{
-		cout<<"Introduce el numero de jugadores: ";
-		cin>>str;
-		int temp;
-		sscanf(str, "%i", &temp);
-		if(temp>=4&&temp<9){
-			break;
-		}else{
-			cout<<"Solo se adminten de entre 4 y 9 jugadores"<<endl;
-		}
-	}**/
+
 	controlador(4,9,"Introduce el numero de jugadores: ","Solo se adminten de entre 4 y 9 jugadores",str);
 	strcpy(sendBuff, str);
 	send(s, sendBuff, sizeof(sendBuff), 0); //1a
@@ -147,33 +121,34 @@ int main(int argc, char *argv[]) {
 		//fase1
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 		if(strcmp(recvBuff, "Nombre del jugador") == 0){
+			system ("CLS");
 			loggerFile << "Introducir jugador \n";
 			cout<<"Introduce el nombre del jugador "<<cont<<": "<<endl;
-			cin>>str;
-			control=!control;			
+			cin>>str;		
 			strcpy(sendBuff, str);
 			send(s, sendBuff, sizeof(sendBuff), 0);
 			cont++;
 		}else if(strcmp(recvBuff, "inicio F2") == 0){
 			loggerFile << "Inicio Fase 2\n";
+			system ("CLS");
 			while(true){
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				if(strcmp(recvBuff, "Que carta elijes? :") == 0){
-					cout<<recvBuff<<endl;
-					cin>>str;
+					controlador(1,8,recvBuff,"Ingresa un numero entre 1 y 7 ambos incluidos",str);
 					strcpy(sendBuff, str);
 					send(s, sendBuff, sizeof(sendBuff), 0);
 					loggerFile << "Eleccion de carta: " << sendBuff << "\n";
+					system ("CLS");
 				}else if(strcmp(recvBuff, "Rey") == 0){
 					do
 					{
 						recv(s, recvBuff, sizeof(recvBuff), 0);
 						if(strcmp(recvBuff, "Que carta gana? :") == 0){
-							cout<< recvBuff<<endl;
-							cin>>str;
+							controlador(1,NJ,recvBuff,"Ingresa un numero entre 1 y el numero de juygadores, ambos incluidos",str);
 							strcpy(sendBuff, str);
 							send(s, sendBuff, sizeof(sendBuff), 0);
 							loggerFile << "Eleccion de carta: " << sendBuff << "\n";
+							system ("CLS");
 							break;
 						}else{	
 							cout << recvBuff<<endl;
@@ -182,6 +157,7 @@ int main(int argc, char *argv[]) {
 							}
 
 					} while (true);
+					
 				}else if(strcmp(recvBuff, "fin") == 0){
 					send(s, "Confirmacion de fin", sizeof(sendBuff), 0);
 					recv(s, recvBuff, sizeof(recvBuff), 0);
@@ -191,12 +167,9 @@ int main(int argc, char *argv[]) {
 					break;	
 				}else{
 					cout<<recvBuff<<endl;
-					
 					send(s, "Confirmacion", sizeof(sendBuff), 0);
 					loggerFile << "Enviada confirmacion: " << recvBuff <<"\n";
-				}
-				
-				
+				}	
 			}
 		}
 			

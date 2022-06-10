@@ -309,7 +309,10 @@ do{
 				//fase de envio de 8 cartas de respuesta
 				for(int x =0; x<Njugadores;x++){
 					//enviar carta
-					strcpy(sendBuff, listaRespuestas[x]);
+					strcpy(sendBuff," ");
+					sprintf(sendBuff, "%d", x+1);
+					strcat(sendBuff," - ");
+					strcat(sendBuff, listaRespuestas[x]);
 					send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 					cout<<"pregunta enviada: "<< sendBuff<<endl;
 					do {

@@ -144,7 +144,7 @@ int main(int argc, char *argv[]) {
 					{
 						recv(s, recvBuff, sizeof(recvBuff), 0);
 						if(strcmp(recvBuff, "Que carta gana? :") == 0){
-							controlador(1,NJ,recvBuff,"Ingresa un numero entre 1 y el numero de juygadores, ambos incluidos",str);
+							controlador(1,NJ+1,recvBuff,"Ingresa un numero entre 1 y el numero de jugadores, ambos incluidos",str);
 							strcpy(sendBuff, str);
 							send(s, sendBuff, sizeof(sendBuff), 0);
 							loggerFile << "Eleccion de carta: " << sendBuff << "\n";

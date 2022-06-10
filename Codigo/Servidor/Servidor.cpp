@@ -229,7 +229,8 @@ do{
 					for(int x =0; x<8;x++){
 						//enviar carta
 						if(x == 7){
-							strcpy(sendBuff,tempBlackCard);
+							strcpy(sendBuff,"Pregunta de la ronda: ");
+							strcat(sendBuff,tempBlackCard);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 							cout<<"pregunta enviada: "<< sendBuff <<endl;
 							do {
@@ -240,7 +241,10 @@ do{
 									}
 							} while (1);
 						} else {
-							strcpy(sendBuff, listaJ[i]->seleccionarCarta(x).texto);
+							strcpy(sendBuff," ");
+							sprintf(sendBuff, "%d", x+1);
+							strcat(sendBuff," - ");
+							strcat(sendBuff, listaJ[i]->seleccionarCarta(x).texto);
 							send(comm_socket,sendBuff, sizeof(sendBuff), 0);//esta frase activa fase 1 en cliente
 							cout<<"pregunta enviada: "<< sendBuff <<endl;
 							do {

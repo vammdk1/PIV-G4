@@ -39,6 +39,23 @@ void LineaConsola(){
 	cout<<"--------------------------------------"<<endl;
 }
 
+char* controlador(int min, int max,string mensaje, string error,char* resp){
+	while (1)
+	{
+		cout<<mensaje;
+		cin>>resp;
+		int temp;
+		sscanf(resp, "%i", &temp);
+		if(temp>=min&&temp<max){
+			break;
+		}else{
+			cout<<error<<endl;
+		}
+	}
+	return resp;
+
+}
+
 int main(int argc, char *argv[]) {
 
     char* SERVER_IP;
@@ -104,34 +121,46 @@ int main(int argc, char *argv[]) {
 	//ntohs(server.sin_port));
 
 	//Fase 1
-	
-	cout<<"Introduce el numero de jugadores: "<<endl;
-	fgets(str, 2, stdin);
-	fflush(stdin);
+	cabecera();
+	/**
+	while (1)
+	{
+		cout<<"Introduce el numero de jugadores: ";
+		cin>>str;
+		int temp;
+		sscanf(str, "%i", &temp);
+		if(temp>=4&&temp<9){
+			break;
+		}else{
+			cout<<"Solo se adminten de entre 4 y 9 jugadores"<<endl;
+		}
+	}**/
+	controlador(4,9,"Introduce el numero de jugadores: ","Solo se adminten de entre 4 y 9 jugadores",str);
 	strcpy(sendBuff, str);
 	send(s, sendBuff, sizeof(sendBuff), 0); //1a
 	loggerFile << "Numero de jugadores: " << str << "\n";
 	bool final=false;
-	int NJ ;
-	sscanf(str, "%i",&NJ);
+	int NJ  = stoi(str);
+	int cont=1;
+	bool control=false;
 	while(!final){
 		//fase1
 		recv(s, recvBuff, sizeof(recvBuff), 0);
 		if(strcmp(recvBuff, "Nombre del jugador") == 0){
 			loggerFile << "Introducir jugador \n";
-			cout<<"Introduce el nombre del jugador: "<<endl;
-			fgets(str, 20, stdin);
-			fflush(stdin);
+			cout<<"Introduce el nombre del jugador "<<cont<<": "<<endl;
+			cin>>str;
+			control=!control;			
 			strcpy(sendBuff, str);
 			send(s, sendBuff, sizeof(sendBuff), 0);
+			cont++;
 		}else if(strcmp(recvBuff, "inicio F2") == 0){
 			loggerFile << "Inicio Fase 2\n";
 			while(true){
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				if(strcmp(recvBuff, "Que carta elijes? :") == 0){
 					cout<<recvBuff<<endl;
-					fgets(str, 2, stdin);
-					fflush(stdin);
+					cin>>str;
 					strcpy(sendBuff, str);
 					send(s, sendBuff, sizeof(sendBuff), 0);
 					loggerFile << "Eleccion de carta: " << sendBuff << "\n";
@@ -141,8 +170,7 @@ int main(int argc, char *argv[]) {
 						recv(s, recvBuff, sizeof(recvBuff), 0);
 						if(strcmp(recvBuff, "Que carta gana? :") == 0){
 							cout<< recvBuff<<endl;
-							fgets(str, 2, stdin);
-							fflush(stdin);
+							cin>>str;
 							strcpy(sendBuff, str);
 							send(s, sendBuff, sizeof(sendBuff), 0);
 							loggerFile << "Eleccion de carta: " << sendBuff << "\n";

@@ -1,333 +1,489 @@
-Numero de jugadores: 4
+Numero de jugadores: 5
+Introducir jugador 
 Introducir jugador 
 Introducir jugador 
 Introducir jugador 
 Introducir jugador 
 Inicio Fase 2
 Enviada confirmacion: a
+Enviada confirmacion: 1 - Suzuki Escudo
 
-Enviada confirmacion: Suzuki Escudo
+Enviada confirmacion: 2 - Un bocadillo de Mayonesa
 
-Enviada confirmacion: Un bocadillo de Mayonesa
+Enviada confirmacion: 3 - Agua potable
 
-Enviada confirmacion: Agua potable
+Enviada confirmacion: 4 - Un gato
 
-Enviada confirmacion: Un gato
+Enviada confirmacion: 5 - Fideua
 
-Enviada confirmacion: Fideua
+Enviada confirmacion: 6 - Voldemort
 
-Enviada confirmacion: Voldemort
+Enviada confirmacion: 7 - Comer helado cuando hace frio
 
-Enviada confirmacion: Comer helado cuando hace frio
-
-Enviada confirmacion: Que es ese sonido?
+Enviada confirmacion: Pregunta de la ronda: Que es ese sonido?
 
 Eleccion de carta: 1
-Enviada confirmacion: s
+Enviada confirmacion: b
+Enviada confirmacion: 1 - La mejor provincia del Pais Vasco
 
-Enviada confirmacion: La mejor provincia del Pais Vasco
+Enviada confirmacion: 2 - Una cama sin muelles
 
-Enviada confirmacion: Una cama sin muelles
+Enviada confirmacion: 3 - El BMW del Need for Speed Most Wanted
 
-Enviada confirmacion: El BMW del Need for Speed Most Wanted
+Enviada confirmacion: 4 - Doraemon
 
-Enviada confirmacion: Doraemon
+Enviada confirmacion: 5 - Eurobeat
 
-Enviada confirmacion: Eurobeat
+Enviada confirmacion: 6 - Una servilleta de papel
 
-Enviada confirmacion: Una servilleta de papel
+Enviada confirmacion: 7 - Viajar mucho
 
-Enviada confirmacion: Viajar mucho
+Enviada confirmacion: Pregunta de la ronda: Que es ese sonido?
 
-Enviada confirmacion: Que es ese sonido?
+Eleccion de carta: 1
+Enviada confirmacion: c
+Enviada confirmacion: 1 - Italia
+
+Enviada confirmacion: 2 - Nurburgring
+
+Enviada confirmacion: 3 - Un martillo
+
+Enviada confirmacion: 4 - Comer sin hambre
+
+Enviada confirmacion: 5 - Digimon
+
+Enviada confirmacion: 6 - La muela del juicio
+
+Enviada confirmacion: 7 - Una carrera por la montaña
+
+Enviada confirmacion: Pregunta de la ronda: Que es ese sonido?
 
 Eleccion de carta: 1
 Enviada confirmacion: d
+Enviada confirmacion: 1 - Aizkorri
 
-Enviada confirmacion: Italia
+Enviada confirmacion: 2 - Mirar por la ventana
 
-Enviada confirmacion: Nurburgring
+Enviada confirmacion: 3 - Ducharse
 
-Enviada confirmacion: Un martillo
+Enviada confirmacion: 4 - Creerte DaVinci
 
-Enviada confirmacion: Comer sin hambre
+Enviada confirmacion: 5 - Minecraft
 
-Enviada confirmacion: Digimon
+Enviada confirmacion: 6 - Video
 
-Enviada confirmacion: La muela del juicio
+Enviada confirmacion: 7 - Estrella de la radio
 
-Enviada confirmacion: Una carrera por la montaña
-
-Enviada confirmacion: Que es ese sonido?
-
-Eleccion de carta: 1
-Enviada confirmacion: f
-
-Enviada confirmacion: Aizkorri
-
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Ducharse
-
-Enviada confirmacion: Creerte DaVinci
-
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: Que es ese sonido?
+Enviada confirmacion: Pregunta de la ronda: Que es ese sonido?
 
 Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Una bolsa de papel
+
+Enviada confirmacion: 2 - Carton
+
+Enviada confirmacion: 3 - Un leñador
+
+Enviada confirmacion: 4 - Macarrones
+
+Enviada confirmacion: 5 - Empanadas
+
+Enviada confirmacion: 6 - Oompa Loompas
+
+Enviada confirmacion: 7 - Ser GOTY dos años seguidos
+
+Enviada confirmacion: Pregunta de la ronda: Que es ese sonido?
+
+Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida
 Carta leida
 Eleccion de carta: 1
 Enviada confirmacion: a
+Enviada confirmacion: 1 - Un pokemon bueno
 
-Enviada confirmacion: Una bolsa de papel
+Enviada confirmacion: 2 - Un bocadillo de Mayonesa
 
-Enviada confirmacion: Un bocadillo de Mayonesa
+Enviada confirmacion: 3 - Agua potable
 
-Enviada confirmacion: Agua potable
+Enviada confirmacion: 4 - Un gato
 
-Enviada confirmacion: Un gato
+Enviada confirmacion: 5 - Fideua
 
-Enviada confirmacion: Fideua
+Enviada confirmacion: 6 - Voldemort
 
-Enviada confirmacion: Voldemort
+Enviada confirmacion: 7 - Comer helado cuando hace frio
 
-Enviada confirmacion: Comer helado cuando hace frio
-
-Enviada confirmacion: A que huele?
+Enviada confirmacion: Pregunta de la ronda: A que huele?
 
 Eleccion de carta: 1
-Enviada confirmacion: s
+Enviada confirmacion: b
+Enviada confirmacion: 1 - Sonic en 3D
 
-Enviada confirmacion: Carton
+Enviada confirmacion: 2 - Una cama sin muelles
 
-Enviada confirmacion: Una cama sin muelles
+Enviada confirmacion: 3 - El BMW del Need for Speed Most Wanted
 
-Enviada confirmacion: El BMW del Need for Speed Most Wanted
+Enviada confirmacion: 4 - Doraemon
 
-Enviada confirmacion: Doraemon
+Enviada confirmacion: 5 - Eurobeat
 
-Enviada confirmacion: Eurobeat
+Enviada confirmacion: 6 - Una servilleta de papel
 
-Enviada confirmacion: Una servilleta de papel
+Enviada confirmacion: 7 - Viajar mucho
 
-Enviada confirmacion: Viajar mucho
+Enviada confirmacion: Pregunta de la ronda: A que huele?
 
-Enviada confirmacion: A que huele?
+Eleccion de carta: 1
+Enviada confirmacion: c
+Enviada confirmacion: 1 - La PlayStation
+
+Enviada confirmacion: 2 - Nurburgring
+
+Enviada confirmacion: 3 - Un martillo
+
+Enviada confirmacion: 4 - Comer sin hambre
+
+Enviada confirmacion: 5 - Digimon
+
+Enviada confirmacion: 6 - La muela del juicio
+
+Enviada confirmacion: 7 - Una carrera por la montaña
+
+Enviada confirmacion: Pregunta de la ronda: A que huele?
 
 Eleccion de carta: 1
 Enviada confirmacion: d
+Enviada confirmacion: 1 - Girar puertas
 
-Enviada confirmacion: Un leñador
+Enviada confirmacion: 2 - Mirar por la ventana
 
-Enviada confirmacion: Nurburgring
+Enviada confirmacion: 3 - Ducharse
 
-Enviada confirmacion: Un martillo
+Enviada confirmacion: 4 - Creerte DaVinci
 
-Enviada confirmacion: Comer sin hambre
+Enviada confirmacion: 5 - Minecraft
 
-Enviada confirmacion: Digimon
+Enviada confirmacion: 6 - Video
 
-Enviada confirmacion: La muela del juicio
+Enviada confirmacion: 7 - Estrella de la radio
 
-Enviada confirmacion: Una carrera por la montaña
-
-Enviada confirmacion: A que huele?
-
-Eleccion de carta: 1
-Enviada confirmacion: f
-
-Enviada confirmacion: Macarrones
-
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Ducharse
-
-Enviada confirmacion: Creerte DaVinci
-
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: A que huele?
+Enviada confirmacion: Pregunta de la ronda: A que huele?
 
 Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Una puerta giratoria
+
+Enviada confirmacion: 2 - Carton
+
+Enviada confirmacion: 3 - Un leñador
+
+Enviada confirmacion: 4 - Macarrones
+
+Enviada confirmacion: 5 - Empanadas
+
+Enviada confirmacion: 6 - Oompa Loompas
+
+Enviada confirmacion: 7 - Ser GOTY dos años seguidos
+
+Enviada confirmacion: Pregunta de la ronda: A que huele?
+
+Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida
 Carta leida
 Eleccion de carta: 1
 Enviada confirmacion: a
+Enviada confirmacion: 1 - El tio la vara
 
-Enviada confirmacion: Empanadas
+Enviada confirmacion: 2 - Un bocadillo de Mayonesa
 
-Enviada confirmacion: Un bocadillo de Mayonesa
+Enviada confirmacion: 3 - Agua potable
 
-Enviada confirmacion: Agua potable
+Enviada confirmacion: 4 - Un gato
 
-Enviada confirmacion: Un gato
+Enviada confirmacion: 5 - Fideua
 
-Enviada confirmacion: Fideua
+Enviada confirmacion: 6 - Voldemort
 
-Enviada confirmacion: Voldemort
+Enviada confirmacion: 7 - Comer helado cuando hace frio
 
-Enviada confirmacion: Comer helado cuando hace frio
-
-Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+Enviada confirmacion: Pregunta de la ronda: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
-Enviada confirmacion: s
+Enviada confirmacion: b
+Enviada confirmacion: 1 - Antorchas
 
-Enviada confirmacion: Oompa Loompas
+Enviada confirmacion: 2 - Una cama sin muelles
 
-Enviada confirmacion: Una cama sin muelles
+Enviada confirmacion: 3 - El BMW del Need for Speed Most Wanted
 
-Enviada confirmacion: El BMW del Need for Speed Most Wanted
+Enviada confirmacion: 4 - Doraemon
 
-Enviada confirmacion: Doraemon
+Enviada confirmacion: 5 - Eurobeat
 
-Enviada confirmacion: Eurobeat
+Enviada confirmacion: 6 - Una servilleta de papel
 
-Enviada confirmacion: Una servilleta de papel
+Enviada confirmacion: 7 - Viajar mucho
 
-Enviada confirmacion: Viajar mucho
+Enviada confirmacion: Pregunta de la ronda: La medicina alternativa ahora usa las propiedades curativas de ______
 
-Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+Eleccion de carta: 1
+Enviada confirmacion: c
+Enviada confirmacion: 1 - Enchufe
+
+Enviada confirmacion: 2 - Nurburgring
+
+Enviada confirmacion: 3 - Un martillo
+
+Enviada confirmacion: 4 - Comer sin hambre
+
+Enviada confirmacion: 5 - Digimon
+
+Enviada confirmacion: 6 - La muela del juicio
+
+Enviada confirmacion: 7 - Una carrera por la montaña
+
+Enviada confirmacion: Pregunta de la ronda: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
 Enviada confirmacion: d
+Enviada confirmacion: 1 - Un trapo humedo
 
-Enviada confirmacion: Ser GOTY dos años seguidos
+Enviada confirmacion: 2 - Mirar por la ventana
 
-Enviada confirmacion: Nurburgring
+Enviada confirmacion: 3 - Ducharse
 
-Enviada confirmacion: Un martillo
+Enviada confirmacion: 4 - Creerte DaVinci
 
-Enviada confirmacion: Comer sin hambre
+Enviada confirmacion: 5 - Minecraft
 
-Enviada confirmacion: Digimon
+Enviada confirmacion: 6 - Video
 
-Enviada confirmacion: La muela del juicio
+Enviada confirmacion: 7 - Estrella de la radio
 
-Enviada confirmacion: Una carrera por la montaña
-
-Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
-
-Eleccion de carta: 1
-Enviada confirmacion: f
-
-Enviada confirmacion: Un pokemon bueno
-
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Ducharse
-
-Enviada confirmacion: Creerte DaVinci
-
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: La medicina alternativa ahora usa las propiedades curativas de ______
+Enviada confirmacion: Pregunta de la ronda: La medicina alternativa ahora usa las propiedades curativas de ______
 
 Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Rick Astley
+
+Enviada confirmacion: 2 - Carton
+
+Enviada confirmacion: 3 - Un leñador
+
+Enviada confirmacion: 4 - Macarrones
+
+Enviada confirmacion: 5 - Empanadas
+
+Enviada confirmacion: 6 - Oompa Loompas
+
+Enviada confirmacion: 7 - Ser GOTY dos años seguidos
+
+Enviada confirmacion: Pregunta de la ronda: La medicina alternativa ahora usa las propiedades curativas de ______
+
+Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida
 Carta leida
 Eleccion de carta: 1
 Enviada confirmacion: a
+Enviada confirmacion: 1 - El gobierno
 
-Enviada confirmacion: Sonic en 3D
+Enviada confirmacion: 2 - Un bocadillo de Mayonesa
 
-Enviada confirmacion: Un bocadillo de Mayonesa
+Enviada confirmacion: 3 - Agua potable
 
-Enviada confirmacion: Agua potable
+Enviada confirmacion: 4 - Un gato
 
-Enviada confirmacion: Un gato
+Enviada confirmacion: 5 - Fideua
 
-Enviada confirmacion: Fideua
+Enviada confirmacion: 6 - Voldemort
 
-Enviada confirmacion: Voldemort
+Enviada confirmacion: 7 - Comer helado cuando hace frio
 
-Enviada confirmacion: Comer helado cuando hace frio
-
-Enviada confirmacion: Quien esta ahi?
+Enviada confirmacion: Pregunta de la ronda: Quien esta ahi?
 
 Eleccion de carta: 1
-Enviada confirmacion: s
+Enviada confirmacion: b
+Enviada confirmacion: 1 - Ordenanzas municipales
 
-Enviada confirmacion: La PlayStation
+Enviada confirmacion: 2 - Una cama sin muelles
 
-Enviada confirmacion: Una cama sin muelles
+Enviada confirmacion: 3 - El BMW del Need for Speed Most Wanted
 
-Enviada confirmacion: El BMW del Need for Speed Most Wanted
+Enviada confirmacion: 4 - Doraemon
 
-Enviada confirmacion: Doraemon
+Enviada confirmacion: 5 - Eurobeat
 
-Enviada confirmacion: Eurobeat
+Enviada confirmacion: 6 - Una servilleta de papel
 
-Enviada confirmacion: Una servilleta de papel
+Enviada confirmacion: 7 - Viajar mucho
 
-Enviada confirmacion: Viajar mucho
+Enviada confirmacion: Pregunta de la ronda: Quien esta ahi?
 
-Enviada confirmacion: Quien esta ahi?
+Eleccion de carta: 1
+Enviada confirmacion: c
+Enviada confirmacion: 1 - Impuestos
+
+Enviada confirmacion: 2 - Nurburgring
+
+Enviada confirmacion: 3 - Un martillo
+
+Enviada confirmacion: 4 - Comer sin hambre
+
+Enviada confirmacion: 5 - Digimon
+
+Enviada confirmacion: 6 - La muela del juicio
+
+Enviada confirmacion: 7 - Una carrera por la montaña
+
+Enviada confirmacion: Pregunta de la ronda: Quien esta ahi?
 
 Eleccion de carta: 1
 Enviada confirmacion: d
+Enviada confirmacion: 1 - Iluminar una estancia de manera insuficiente
 
-Enviada confirmacion: Girar puertas
+Enviada confirmacion: 2 - Mirar por la ventana
 
-Enviada confirmacion: Nurburgring
+Enviada confirmacion: 3 - Ducharse
 
-Enviada confirmacion: Un martillo
+Enviada confirmacion: 4 - Creerte DaVinci
 
-Enviada confirmacion: Comer sin hambre
+Enviada confirmacion: 5 - Minecraft
 
-Enviada confirmacion: Digimon
+Enviada confirmacion: 6 - Video
 
-Enviada confirmacion: La muela del juicio
+Enviada confirmacion: 7 - Estrella de la radio
 
-Enviada confirmacion: Una carrera por la montaña
-
-Enviada confirmacion: Quien esta ahi?
-
-Eleccion de carta: 1
-Enviada confirmacion: f
-
-Enviada confirmacion: Una puerta giratoria
-
-Enviada confirmacion: Mirar por la ventana
-
-Enviada confirmacion: Ducharse
-
-Enviada confirmacion: Creerte DaVinci
-
-Enviada confirmacion: Minecraft
-
-Enviada confirmacion: Video
-
-Enviada confirmacion: Estrella de la radio
-
-Enviada confirmacion: Quien esta ahi?
+Enviada confirmacion: Pregunta de la ronda: Quien esta ahi?
 
 Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Suzuki Escudo
+
+Enviada confirmacion: 2 - Carton
+
+Enviada confirmacion: 3 - Un leñador
+
+Enviada confirmacion: 4 - Macarrones
+
+Enviada confirmacion: 5 - Empanadas
+
+Enviada confirmacion: 6 - Oompa Loompas
+
+Enviada confirmacion: 7 - Ser GOTY dos años seguidos
+
+Enviada confirmacion: Pregunta de la ronda: Quien esta ahi?
+
+Eleccion de carta: 1
+Carta leida
+Carta leida
+Carta leida
+Carta leida
+Carta leida
+Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Un bocadillo de Mayonesa
+
+Enviada confirmacion: 2 - Un bocadillo de Mayonesa
+
+Enviada confirmacion: 3 - Agua potable
+
+Enviada confirmacion: 4 - Un gato
+
+Enviada confirmacion: 5 - Fideua
+
+Enviada confirmacion: 6 - Voldemort
+
+Enviada confirmacion: 7 - Comer helado cuando hace frio
+
+Enviada confirmacion: Pregunta de la ronda: El amor existe porque _____
+
+Eleccion de carta: 1
+Enviada confirmacion: b
+Enviada confirmacion: 1 - Agua potable
+
+Enviada confirmacion: 2 - Una cama sin muelles
+
+Enviada confirmacion: 3 - El BMW del Need for Speed Most Wanted
+
+Enviada confirmacion: 4 - Doraemon
+
+Enviada confirmacion: 5 - Eurobeat
+
+Enviada confirmacion: 6 - Una servilleta de papel
+
+Enviada confirmacion: 7 - Viajar mucho
+
+Enviada confirmacion: Pregunta de la ronda: El amor existe porque _____
+
+Eleccion de carta: 1
+Enviada confirmacion: c
+Enviada confirmacion: 1 - Un gato
+
+Enviada confirmacion: 2 - Nurburgring
+
+Enviada confirmacion: 3 - Un martillo
+
+Enviada confirmacion: 4 - Comer sin hambre
+
+Enviada confirmacion: 5 - Digimon
+
+Enviada confirmacion: 6 - La muela del juicio
+
+Enviada confirmacion: 7 - Una carrera por la montaña
+
+Enviada confirmacion: Pregunta de la ronda: El amor existe porque _____
+
+Eleccion de carta: 1
+Enviada confirmacion: d
+Enviada confirmacion: 1 - Fideua
+
+Enviada confirmacion: 2 - Mirar por la ventana
+
+Enviada confirmacion: 3 - Ducharse
+
+Enviada confirmacion: 4 - Creerte DaVinci
+
+Enviada confirmacion: 5 - Minecraft
+
+Enviada confirmacion: 6 - Video
+
+Enviada confirmacion: 7 - Estrella de la radio
+
+Enviada confirmacion: Pregunta de la ronda: El amor existe porque _____
+
+Eleccion de carta: 1
+Enviada confirmacion: a
+Enviada confirmacion: 1 - Voldemort
+
+Enviada confirmacion: 2 - Carton
+
+Enviada confirmacion: 3 - Un leñador
+
+Enviada confirmacion: 4 - Macarrones
+
+Enviada confirmacion: 5 - Empanadas
+
+Enviada confirmacion: 6 - Oompa Loompas
+
+Enviada confirmacion: 7 - Ser GOTY dos años seguidos
+
+Enviada confirmacion: Pregunta de la ronda: El amor existe porque _____
+
+Eleccion de carta: 1
+Carta leida
 Carta leida
 Carta leida
 Carta leida
 Carta leida
 Eleccion de carta: 1
 Ganador establecido: a
-
 Final
